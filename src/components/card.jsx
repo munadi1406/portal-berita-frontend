@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types'
 
-
-export default function Card() {
+export default function Card({title,content,kategori}) {
   return (
     <>
       <div className="card bg-base-100 shadow-xl image-full max-h-60">
@@ -12,8 +12,9 @@ export default function Card() {
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Berita 1</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam doloremque facere dolorum libero, officiis saepe perspiciatis nulla! Distinctio, quod voluptatum!</p>
+            <h2 className="card-title">{title}</h2>
+            <p className='badge badge-primary text-white badge-xs font-bold'>{kategori}</p>
+            <p>{content}</p>
             <div className="card-actions justify-end">
               <button className="btn btn-primary">Baca Ini Om</button>
             </div>
@@ -22,4 +23,10 @@ export default function Card() {
         </div>
     </>
   )
+}
+
+Card.propTypes = {
+  title:PropTypes.string,
+  content:PropTypes.string,
+  kategori:PropTypes.string
 }
