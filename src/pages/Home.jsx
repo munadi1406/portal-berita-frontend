@@ -14,7 +14,7 @@ const Home = () => {
       setLoading(false)
       // console.log(datas);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -14,7 +14,7 @@ const Sidebar = () => {
       setLoading(false)
       // console.log(datas);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -28,7 +28,7 @@ const Sidebar = () => {
       <h1 className={`${loading?'':'hidden'} text-center`}>Loading...</h1>
     {data.map((e)=>(
       <div key={e.artikelId}>
-        <Collapse/>
+        <Collapse title={e.title} content={e.content}/>
       </div>
     ))}
       </div>

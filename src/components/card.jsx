@@ -18,7 +18,7 @@ export default function Card({ title, content, kategori }) {
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
           <p className='badge badge-primary text-white badge-xs font-bold'>{kategori}</p>
-          <p className="border max-h-full">{truncatedContent}</p>
+          <p className=" max-h-full">{truncatedContent}</p>
           <div className="card-actions justify-end">
             <button className="btn btn-primary">Baca Selengkapnya Lur </button>
           </div>
