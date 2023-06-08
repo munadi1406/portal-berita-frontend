@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
-import Collapse from "../components/collapse";
+import { useEffect, useState, Suspense, lazy } from "react";
 import { getArtikel } from "../api/api";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
+import Loader from "../utils/loader";
+
+const Collapse = lazy(() => import("../components/collapse"));
 
 const Sidebar = () => {
   const [data, setData] = useState([]);
-  const [loading,setLoading] = useState(true);
+
 
   const getArtikelData = async () => {
     try {
       const datas = await getArtikel();
       setData(datas.data.data);
-      setLoading(false)
       // console.log(datas);
     } catch (error) {
       // console.log(error);
@@ -24,19 +25,20 @@ const Sidebar = () => {
   return (
     <>
       <div className="space-y-2">
-      <h1 className="font-bold text-xl">Recent</h1>
-      <h1 className={`${loading?'':'hidden'} text-center`}>Loading...</h1>
-    {data.map((e)=>(
-      <div key={e.artikelId}>
-        <Collapse title={e.title} content={e.content}/>
-      </div>
-    ))}
+        <h1 className="font-bold text-xl">Recent</h1>
+        <Suspense fallback={<Loader />}>
+          {data.map((e) => (
+            <div key={e.artikelId}>
+              <Collapse title={e.title} content={e.content} />
+            </div>
+          ))}
+        </Suspense>
       </div>
     </>
   );
 };
 Sidebar.propTypes = {
-  title:PropTypes.string,
-  content:PropTypes.string,
-}
+  title: PropTypes.string,
+  content: PropTypes.string,
+};
 export default Sidebar;
