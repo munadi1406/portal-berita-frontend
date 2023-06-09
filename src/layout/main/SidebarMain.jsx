@@ -1,11 +1,11 @@
 import { useEffect, useState, Suspense, lazy } from "react";
-import { getArtikel } from "../api/api";
+import { getArtikel } from "../../api/api";
 import PropTypes from "prop-types";
-import Loader from "../utils/loader";
+import Loader from "../../utils/loader";
 
-const Collapse = lazy(() => import("../components/collapse"));
+const Collapse = lazy(() => import("../../components/collapse"));
 
-const Sidebar = () => {
+const SidebarMain = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -40,8 +40,8 @@ const Sidebar = () => {
     </>
   );
 };
-Sidebar.propTypes = {
+SidebarMain.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
 };
-export default Sidebar;
+export default SidebarMain;

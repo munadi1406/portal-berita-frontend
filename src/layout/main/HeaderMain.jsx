@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const Header = () => {
+const HeaderMain = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   const handleClick = () => {
@@ -91,7 +91,7 @@ const Header = () => {
               />
             </label>
           </div>
-          <a className="btn btn-secondary  rounded-full">Sign In</a>
+          <Link to={'/dashboard'}className="btn btn-secondary  rounded-full">Sign In</Link>
         </div>
       </nav>
       {/* carousel */}
@@ -157,4 +157,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderMain;
