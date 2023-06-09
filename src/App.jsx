@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Kategori from "./pages/Kategori";
 import Sidebar from "./layout/sidebar";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 
 function App() {
   useEffect(() => {
@@ -12,7 +13,7 @@ function App() {
   }, []);
   return (
     <>
-      <div className="">
+      
         <BrowserRouter>
           <Header />
           <div className="flex flex-wrap pl-6 pr-6 w-full">
@@ -23,14 +24,13 @@ function App() {
               </Routes>
             </main>
             <aside className="lg:w-1/4 sm:w-full p-4">
-            <div className="top-0 sticky ">
-              <Sidebar />
-            </div>
+              <div className="top-0 sticky ">
+                <Sidebar />
+              </div>
             </aside>
           </div>
           <Footer />
         </BrowserRouter>
-      </div>
     </>
   );
 }

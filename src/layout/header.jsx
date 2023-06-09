@@ -40,22 +40,26 @@ const Header = () => {
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to={'/'} className="text-blue-500">Home</Link>
+                <Link to={"/"} className="text-blue-500">
+                  Home
+                </Link>
               </li>
               <li>
                 <a>Kategori</a>
                 <ul className="p-2">
                   <li>
-                    <Link to={'/kategori/belajar'}>Submenu 1</Link>
+                    <Link to={"/kategori/belajar"}>Submenu 1</Link>
                   </li>
                   <li>
-                    <Link to={'/kategori/mengaji'}>Submenu 2</Link>
+                    <Link to={"/kategori/mengaji"}>Submenu 2</Link>
                   </li>
                 </ul>
               </li>
             </ul>
           </div>
-          <Link to={'/'} className="btn btn-ghost normal-case text-xl">Cosmic</Link>
+          <Link to={"/"} className="btn btn-ghost normal-case text-xl">
+            Cosmic
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -65,7 +69,14 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to={"/kategori/politik"}>Kategori</Link>
+              <details className="dropdown">
+                <summary className="">Kategori</summary>
+                <ul className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
+                  <li>
+                    <Link to={'/kategori/politik'}>Politik</Link>
+                  </li>
+                </ul>
+              </details>
             </li>
           </ul>
         </div>
