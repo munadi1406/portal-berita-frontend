@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Kategori from "./pages/Kategori";
 import Sidebar from "./layout/sidebar";
-import { HelmetProvider, Helmet } from "react-helmet-async";
 
 function App() {
   useEffect(() => {
