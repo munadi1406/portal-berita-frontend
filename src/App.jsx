@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import {Dashboard, Main} from './utils/imports'
+import {Dashboard, Login, Main} from './utils/imports'
 
 
 
@@ -15,6 +15,7 @@ function App() {
         <BrowserRouter>
               <Routes>
                 <Route path="*" element={<Main />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/dashboard/*" element={<Dashboard />} />
               </Routes>
         </BrowserRouter>

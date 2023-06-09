@@ -1,5 +1,5 @@
 // import Card from "../components/card";
-import { getArtikel } from "../api/api";
+import { getArtikel } from "../api/artikel";
 import { useState, useEffect, Suspense, lazy } from "react";
 import Loader from "../utils/loader";
 import { Helmet, HelmetProvider } from "react-helmet-async";

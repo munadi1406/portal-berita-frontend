@@ -1,5 +1,5 @@
 import { useEffect, useState, Suspense, lazy } from "react";
-import { getArtikel } from "../../api/api";
+import { getArtikel } from "../../api/artikel";
 import PropTypes from "prop-types";
 import Loader from "../../utils/loader";
 

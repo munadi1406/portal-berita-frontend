@@ -4,14 +4,11 @@ import { Routes,Route } from "react-router-dom";
 export default function Dashboard() {
   return (
     <>
-      <HeaderDashboard />
-      
+      <HeaderDashboard />      
         <Routes>
             <Route path="/" element={<Index/>}/>
             <Route path="/post" element={<Post/>}/>
         </Routes>
-
-
       <FooterDashboard />
     </>
   );

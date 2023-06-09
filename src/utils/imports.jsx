@@ -3,6 +3,7 @@ import FooterMain from "../layout/main/FooterMain";
 import SidebarMain from "../layout/main/SidebarMain";
 import Kategori from "../pages/Kategori";
 import Home from "../pages/Home";
+import Login from "../pages/Login";
 
 import HeaderDashboard from "../layout/dashboard/HeaderDashboard";
 import FooterDashboard from "../layout/dashboard/FooterDashboard";
@@ -24,5 +25,6 @@ export {
   FooterDashboard,
   Dashboard,
   Index,
-  Post
+  Post,
+  Login
 };
