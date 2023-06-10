@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { getKategori } from "../../api/kategori";
 
 const HeaderMain = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [kategoriData, setKategoriData] = useState([]);
+
+  const getKategoriData = async ()=>{
+    try {
+      const data = await getKategori();
+      console.log(data)
+      setKategoriData(data.data.data)
+    } catch (error) { /* empty */ }
+  }
 
   const handleClick = () => {
     document
@@ -10,6 +20,9 @@ const HeaderMain = () => {
       .setAttribute("data-theme", `${darkMode ? "dark" : "light"}`);
   };
 
+  useEffect(()=>{
+    getKategoriData()
+  },[])
   useEffect(() => {
     handleClick();
   }, [darkMode]);
@@ -72,9 +85,12 @@ const HeaderMain = () => {
               <details className="dropdown">
                 <summary className="">Kategori</summary>
                 <ul className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
-                  <li>
-                    <Link to={'/kategori/politik'}>Politik</Link>
+                {kategoriData.map((e)=>(
+                  <li key={e.id}>
+                    <Link to={`/kategori/${e.kategori}`}>{e.kategori}</Link>
                   </li>
+                ))}
+                  
                 </ul>
               </details>
             </li>

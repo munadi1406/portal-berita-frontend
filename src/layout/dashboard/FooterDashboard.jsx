@@ -2,7 +2,7 @@
 
 export default function FooterDashboard() {
   return (
-    <div>
+    <div className="text-right text-white">
   footer dashboard      
     </div>
   )
