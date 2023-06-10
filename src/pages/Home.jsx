@@ -42,6 +42,7 @@ const Home = () => {
                   content={e.content}
                   kategori={e.kategori}
                   key={e.artikelId}
+                  image={e.image}
                 />
               ))}
             </Suspense>

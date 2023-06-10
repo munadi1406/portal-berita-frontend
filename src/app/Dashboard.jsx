@@ -5,10 +5,12 @@ export default function Dashboard() {
   return (
     <>
       <HeaderDashboard />      
+        <div className="w-full h-screen">
         <Routes>
             <Route path="/" element={<Index/>}/>
             <Route path="/post" element={<Post/>}/>
         </Routes>
+        </div>
       <FooterDashboard />
     </>
   );

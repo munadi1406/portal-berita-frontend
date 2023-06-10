@@ -1,6 +1,7 @@
-import {HeaderMain,SidebarMain,FooterMain, Home, Kategori} from '../utils/imports'
+import {HeaderMain,SidebarMain,FooterMain, Home, Kategori, ArtikelByTitle} from '../utils/imports'
 import { Routes } from 'react-router-dom'
 import { Route } from 'react-router-dom'
+
 
 
 export default function Main() {
@@ -12,6 +13,7 @@ export default function Main() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/kategori/:kategori" element={<Kategori />} />
+                <Route path="/article/:title" element={<ArtikelByTitle />} />
               </Routes>
             </main>
             <aside className="lg:w-1/4 sm:w-full p-4">

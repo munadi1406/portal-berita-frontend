@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 
 import HeaderDashboard from "../layout/dashboard/HeaderDashboard";
 import FooterDashboard from "../layout/dashboard/FooterDashboard";
+import ArtikelByTitle from "../pages/ArtikelByTitle";
 
 import Main from "../app/Main";
 import Dashboard from "../app/Dashboard";
@@ -26,5 +27,6 @@ export {
   Dashboard,
   Index,
   Post,
-  Login
+  Login,
+  ArtikelByTitle
 };
