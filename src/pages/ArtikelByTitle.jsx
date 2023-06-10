@@ -13,14 +13,14 @@ const ArtikelByTitle = () => {
   const { title } = useParams();
   const [dataArtikel, setDataArtikel] = useState([]);
   const [loading, setLoading] = useState(true);
-  const componentRef = useRef();
+
 
   const getArtikelData = async () => {
     try {
       const data = await artikelByTitle(title);
       setDataArtikel(data.data.data);
       setLoading(false);
-    } catch (error) {}
+    } catch (error) { /* empty */ }
   };
 
   useEffect(() => {
@@ -59,7 +59,6 @@ h2.forEach((e)=>{
 h3.forEach((e)=>{
   e.classList.add('text-lg');
 });
-
   }, [dataArtikel]);
 
   return (

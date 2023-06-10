@@ -27,7 +27,7 @@ export default function Card({ title, content, kategori,image }) {
           <h2 className="card-title ">{truncatedTitle}</h2>
           <div className="text-xs font-bold text-right">10 Juni 2023</div>
           <div className='text-xs bg-primary max-w-max p-1 pl-2 pr-2 font-bold rounded-full'>{kategori}</div>
-          <p className=" max-h-full ">{Parser().parse(truncatedContent)}</p>
+          <p className=" max-h-full max-w-[150px] overflow-hidden ">{Parser().parse(truncatedContent)}</p>
           <div className="card-actions justify-end">
             <Link to={`/article/${formattedTitle}`} className="btn btn-primary w-full text-sm">Baca Selengkapnya Lur </Link>
           </div>
