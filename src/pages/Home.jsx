@@ -3,6 +3,7 @@ import { getArtikel } from "../api/artikel";
 import { useState, useEffect, Suspense, lazy } from "react";
 import Loader from "../utils/loader";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import {SkeletonLoading} from "../utils/imports";
 
 const Card = lazy(() => import("../components/card"));
 
@@ -33,9 +34,9 @@ const Home = () => {
         </Helmet>
         <div className="p-2 grid lg:grid-cols-3 gap-2 md:grid-cols-2 sm:grid-cols-1">
           {loading ? (
-            <Loader />
+            <Loader/>
           ) : (
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<SkeletonLoading />}>
               {data.map((e) => (
                 <Card
                   title={e.title}

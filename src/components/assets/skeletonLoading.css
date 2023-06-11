@@ -1,0 +1,55 @@
+.skeleton-image {
+    width: 100%;
+    height: 200px; /* Sesuaikan dengan tinggi gambar */
+    /* background-color: #ccc; Warna latar belakang */
+    animation: skeleton-loading 1s infinite ease-in-out alternate;
+  }
+  
+  .skeleton-title {
+    width: 80%;
+    height: 16px; /* Sesuaikan dengan tinggi judul */
+    background-color: #ccc; /* Warna latar belakang */
+    margin-bottom: 8px; /* Jarak antara judul dan tanggal */
+    animation: skeleton-loading 1s infinite ease-in-out alternate;
+  }
+  
+  .skeleton-date {
+    width: 40%;
+    height: 12px; /* Sesuaikan dengan tinggi tanggal */
+    background-color: #ccc; /* Warna latar belakang */
+    margin-bottom: 8px; /* Jarak antara tanggal dan kategori */
+    animation: skeleton-loading 1s infinite ease-in-out alternate;
+  }
+  
+  .skeleton-category {
+    width: 100px; /* Sesuaikan dengan lebar kategori */
+    height: 16px; /* Sesuaikan dengan tinggi kategori */
+    background-color: #ccc; /* Warna latar belakang */
+    margin-bottom: 8px; /* Jarak antara kategori dan konten */
+    animation: skeleton-loading 1s infinite ease-in-out alternate;
+  }
+  
+  .skeleton-content {
+    width: 100%;
+    height: 100px; /* Sesuaikan dengan tinggi konten */
+    background-color: #ccc; /* Warna latar belakang */
+    margin-bottom: 8px; /* Jarak antara konten dan tombol */
+    animation: skeleton-loading 1s infinite ease-in-out alternate;
+  }
+  
+  .skeleton-button {
+    width: 120px; /* Sesuaikan dengan lebar tombol */
+    height: 32px; /* Sesuaikan dengan tinggi tombol */
+    background-color: #ccc; /* Warna latar belakang */
+    animation: skeleton-loading 1s infinite ease-in-out alternate;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 0.3;
+    }
+  }
+  

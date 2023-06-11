@@ -1,0 +1,23 @@
+.skeleton-title {
+    width: 100%;
+    height: 24px; /* Sesuaikan dengan tinggi judul */
+    background-color: #ccc; /* Warna latar belakang */
+    animation: skeleton-loading 1s infinite ease-in-out alternate;
+  }
+  
+  .skeleton-content {
+    width: 100%;
+    height: 60px; /* Sesuaikan dengan tinggi konten */
+    background-color: #ccc; /* Warna latar belakang */
+    animation: skeleton-loading 1s infinite ease-in-out alternate;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 0.3;
+    }
+  }
+  

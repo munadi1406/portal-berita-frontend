@@ -10,7 +10,9 @@ import FooterDashboard from "../layout/dashboard/FooterDashboard";
 import Navbar from "../layout/dashboard/Navbar";
 import Sidebar from "../layout/dashboard/Sidebar";
 import Statistik from "../pages/Dashboard/Statistik";
-
+import SkeletonLoading from "../components/SkeletonLoading";
+import PrivateRoute from "./PrivateRoute";
+import AuthCheck from "./AuthCheck";
 
 import ArtikelByTitle from "../pages/ArtikelByTitle";
 import Pengaturan from "../pages/Dashboard/Pengaturan";
@@ -21,8 +23,17 @@ import Dashboard from "../app/Dashboard";
 import Index from '../pages/Dashboard/Index'
 import Post from "../pages/Dashboard/Post";
 
+import Carousel from "../components/Carousel";
+import CollapseLoading from '../components/CollapseLoading'
+import KategoriData from "../pages/Dashboard/KategoriData";
 
 export {
+  KategoriData,
+  AuthCheck,
+  PrivateRoute,
+  CollapseLoading,
+  SkeletonLoading,
+  Carousel,
   HeaderMain,
   FooterMain,
   SidebarMain,

@@ -7,3 +7,14 @@ export const getKategori = async () => {
   return data;
 };
 
+
+export const addKategori = async (kategori) => {
+  const data = await axios.post(`${endpoint}/kategori`,{
+    kategori
+  });
+  return data;
+};
+export const deleteKategori = async (id) => {
+  const data = await axios.delete(`${endpoint}/kategori/${id}`);
+  return data;
+};

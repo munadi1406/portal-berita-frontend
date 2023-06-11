@@ -15,6 +15,7 @@ export default function Sidebar() {
         </Link>
         </li>
         <li className="border-b-white  max-w-full p-2"><Link>Users</Link></li>
+        <li className="border-b-white  max-w-full p-2"><Link to={'./kategori'}>Kategori</Link></li>
         <li className="border-b-white  max-w-full p-2"><Link to={'./pengaturan'}>Pengaturan</Link></li>
       </ul>
     </div>

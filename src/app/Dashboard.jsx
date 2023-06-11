@@ -1,7 +1,15 @@
-import { FooterDashboard, Index, Post, Navbar, Sidebar, Statistik, Pengaturan } from "../utils/imports";
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { FooterDashboard, Index, Post, Navbar, Sidebar, Statistik, Pengaturan,AuthCheck, KategoriData } from "../utils/imports";
+import { Routes, Route ,useNavigate} from "react-router-dom";
 
 export default function Dashboard() {
+  const redirect = useNavigate()
+  useEffect(()=>{
+    const isAuthenticated = AuthCheck()
+    if(!isAuthenticated){
+    redirect('/Login')
+    }
+  },[]) 
   return (
     <>
       <div className="w-full border-black grid grid-cols-12 min-h-screen">
@@ -19,6 +27,7 @@ export default function Dashboard() {
         <Route path="/post" element={<Post />} />
         <Route path="/statistik" element={<Statistik />} />
         <Route path="/pengaturan" element={<Pengaturan />} />
+        <Route path="/Kategori" element={<KategoriData />} />
       </Routes>
     </div>
     <div className="bg-slate-600 px-4 py-2 absolute bottom-0 w-full left-0 z-0">

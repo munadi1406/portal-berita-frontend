@@ -2,6 +2,7 @@ import { useEffect, useState, Suspense, lazy } from "react";
 import { getArtikel } from "../../api/artikel";
 import PropTypes from "prop-types";
 import Loader from "../../utils/loader";
+import {CollapseLoading} from "../../utils/imports";
 
 const Collapse = lazy(() => import("../../components/collapse"));
 
@@ -30,7 +31,7 @@ const SidebarMain = () => {
         {loading ? (
           <Loader />
         ) : (
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<CollapseLoading />}>
             {data.map((e) => (
               <Collapse title={e.title} content={e.content} key={e.artikelId} />
             ))}
