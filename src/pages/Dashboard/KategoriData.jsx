@@ -18,12 +18,12 @@ export default function KategoriData() {
   const handleSubmit = async (e)=>{
         e.preventDefault()
         try {
-            const data = await addKategori(KategoriInput);
+            await addKategori(KategoriInput);
             setShowModal(false)
             getKategoriData()
-            console.log(data)
+            // console.log(data)
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 

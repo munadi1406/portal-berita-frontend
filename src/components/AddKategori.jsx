@@ -10,9 +10,9 @@ export default function AddKategori() {
         try {
             const data = await addKategori(Kategori);
             KategoriData.receiveMessage('Pesan baru');
-            console.log(data)
+            // console.log(data)
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 

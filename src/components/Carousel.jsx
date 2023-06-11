@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Loader from '../utils/loader';
+import { Link } from 'react-router-dom';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -27,7 +28,6 @@ const Carousel = ({ data }) => {
 
     useEffect(() => {
         setDataCarousel(data)
-        console.log({data})
         if(dataCarousel){
             setLoader(false)
         }
@@ -58,7 +58,7 @@ const Carousel = ({ data }) => {
                                     <div className='bg-blue-600 text-white rounded-full text-xs p-1'>{e.kategori}</div>
                                     <div className='text-xs text-white p-1 font-bold'>{e.createdAt}</div>
                                 </div>
-                                <div className='btn btn-accent'>Baca Sekarang</div>
+                                <Link to={`/article/${e.title.toLowerCase().replace(/\s/g, '-')}`} className='btn btn-accent'>Baca Sekarang</Link>
                             </div>
                             <img src={e.image} alt={e.title} className='bg-cover' loading='lazy'/>
                             {/* bg grident  */}

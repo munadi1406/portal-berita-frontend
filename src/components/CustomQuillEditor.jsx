@@ -25,7 +25,7 @@ const CustomQuillEditor = () => {
   };
 
   useEffect(()=>{
-    console.log(text)
+    // console.log(text)
   },[text])
 
   const handleClassChange = (event) => {

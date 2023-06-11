@@ -10,7 +10,7 @@ const HeaderMain = () => {
   const getKategoriData = async ()=>{
     try {
       const data = await getKategori();
-      console.log(data)
+      // console.log(data)
       setKategoriData(data.data.data)
     } catch (error) { /* empty */ }
   }

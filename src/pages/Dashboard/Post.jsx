@@ -18,7 +18,7 @@ const Post = () => {
   const insertArtikel = async (e) => {
     e.preventDefault();
     try {
-      await insertArticle(title, content, kategori, image);
+      await insertArticle(title, content,prolog, kategori, image);
       // console.log(data)
     } catch (error) {
       // console.log(error)
