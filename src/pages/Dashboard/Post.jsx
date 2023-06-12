@@ -29,6 +29,7 @@ const Post = () => {
   const handleContentChange = (value) => {
     setContent(value);
   };
+  
 
   const getKategoriData = async () => {
     try {

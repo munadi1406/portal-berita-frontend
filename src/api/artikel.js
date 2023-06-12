@@ -14,7 +14,6 @@ export const artikelByTitle = async (title) => {
 };
 
 export const insertArticle = async (title, content,prolog, kategori, image) => {
-  try {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('content', content);
@@ -23,9 +22,5 @@ export const insertArticle = async (title, content,prolog, kategori, image) => {
     formData.append('image', image);
 
     const response = await axios.post(`${endpoint}/artikel`, formData);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+    return response;
 };

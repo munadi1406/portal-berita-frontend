@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { addKategori, deleteKategori, getKategori } from "../../api/kategori"
+import { deleteKategori, getKategori } from "../../api/kategori"
 import { useEffect } from "react"
+import AddKategori from "../../components/AddKategori"
 
 
 export default function KategoriData() {
   const [kategori, setKategori] = useState([])
-  const [showModal,setShowModal] = useState(false)
+  const [isKategoriAdded, setIsKategoriAdded] = useState(false);
 
   const getKategoriData = async () => {
     try {
@@ -14,22 +15,12 @@ export default function KategoriData() {
     } catch (error) { /* empty */ }
   }
 
-  const [KategoriInput, setKategoriInput] = useState("")
-  const handleSubmit = async (e)=>{
-        e.preventDefault()
-        try {
-            await addKategori(KategoriInput);
-            setShowModal(false)
-            getKategoriData()
-            // console.log(data)
-        } catch (error) {
-            // console.log(error)
-        }
-    }
+ 
 
   useEffect(() => {
     getKategoriData()
   }, [])
+
 
   const handleHapus = async(e)=>{
     try {
@@ -39,24 +30,17 @@ export default function KategoriData() {
     } catch (error) { /* empty */ }
   }
 
+  const handleKategoriAdded = (isAdded) => {
+    setIsKategoriAdded(isAdded);
+  };
+
+  useEffect(()=>{
+    getKategoriData()
+  },[isKategoriAdded])
+
   return (
     <div>
-      {/* <AddKategori/> */}
-      
-      <button className="btn btn-primary" onClick={()=>{setShowModal(true); setKategoriInput("")}}>Add Kategori</button>
-      <input type="checkbox" id="my_modal_6" className="modal-toggle" checked={showModal}/>
-      <div className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Kategori</h3>
-          <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full " value={KategoriInput} onChange={(e) => setKategoriInput(e.target.value)} />
-          <div className="modal-action">
-            <button className="btn btn-primary" type="submit" onClick={(e) => handleSubmit(e)}>Tambah Kategori</button>
-            <button className="btn" onClick={()=>setShowModal(false)}>Close</button>
-          </div>
-        </div>
-      </div>
-
-
+    <AddKategori onKategoriAdded={handleKategoriAdded}/>
 
       <div className="overflow-x-auto">
         <table className="table">

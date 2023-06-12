@@ -1,41 +1,40 @@
 import { useState } from "react";
 import { addKategori } from "../api/kategori";
-import { KategoriData } from "../utils/imports";
+import PropTypes from 'prop-types';
 
-
-export default function AddKategori() {
-    const [Kategori,setKategori] = useState("")
+export default function AddKategori({onKategoriAdded}) {
+    const [showModal,setShowModal] = useState(false)
+    const [KategoriInput, setKategoriInput] = useState("")
     const handleSubmit = async (e)=>{
-        e.preventDefault()
-        try {
-            const data = await addKategori(Kategori);
-            KategoriData.receiveMessage('Pesan baru');
-            // console.log(data)
-        } catch (error) {
-            // console.log(error)
-        }
-    }
-
-    return (
-        <>
-            {/* Open the modal using ID.showModal() method */}
-            <button className="btn btn-neutral" onClick={() => window.my_modal_2.showModal()}>
-                Add Kategori
-            </button>
-            <dialog id="my_modal_2" className="modal">
-                <form method="dialog" className="modal-box">
-                    <div className=" flex justify-center items-center flex-col">
-                        <h3 className="font-bold text-lg">Hello!</h3>
-                        <div className="flex flex-col w-full gap-2">
-                            <h3 className="font-bold text-lg">Kategori</h3>
-                            <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full " value={Kategori} onChange={(e)=>setKategori(e.target.value)}/>
-                            <button className="btn btn-primary" type="submit" onClick={(e)=>handleSubmit(e)}>Tambah Kategori</button>
-                        </div>
-                    </div>
-                </form>
-            </dialog>
-        </>
-    );
-
-
+          e.preventDefault()
+          try {
+              await addKategori(KategoriInput);
+              setShowModal(false)
+              onKategoriAdded(true)
+              // console.log(data)
+            } catch (error) {
+              onKategoriAdded(false)
+              // console.log(error)
+          }
+      }
+  return (
+    <>
+     <button className="btn btn-primary" onClick={()=>{setShowModal(true); setKategoriInput("")}}>Add Kategori</button>
+      <input type="checkbox" id="my_modal_6" className="modal-toggle" checked={showModal}/>
+      <div className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Kategori</h3>
+          <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full " value={KategoriInput} onChange={(e) => setKategoriInput(e.target.value)} />
+          <div className="modal-action">
+            <button className="btn btn-primary" type="submit" onClick={(e) => handleSubmit(e)}>Tambah Kategori</button>
+            <button className="btn" onClick={()=>setShowModal(false)}>Close</button>
+          </div>
+        </div>
+      </div>
+ 
+    </>
+  )
 }
+AddKategori.propTypes = {
+    onKategoriAdded: PropTypes.func.isRequired
+  };
