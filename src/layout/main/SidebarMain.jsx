@@ -9,8 +9,6 @@ const Collapse = lazy(() => import("../../components/collapse"));
 const SidebarMain = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-
   const getArtikelData = async () => {
     try {
       const datas = await getArtikel(1);
@@ -34,7 +32,7 @@ const SidebarMain = () => {
         ) : (
           <Suspense fallback={<CollapseLoading />}>
             {data.map((e) => (
-              <Collapse title={e.title} content={e.content} key={e.artikelId} />
+              <Collapse title={e.title} content={e.prolog} key={e.artikelId} />
             ))}
           </Suspense>
         )}

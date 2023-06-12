@@ -1,6 +1,8 @@
 import {  Suspense, lazy } from "react";
 import Loader from "../../utils/loader";
 import { useState } from "react";
+import { useEffect } from "react";
+import jwtDecodeId from './../../utils/jwtDecodeId'
 
 
 const  AddArtikel = lazy(()=>import('../../components/AddArtikel'));
@@ -11,6 +13,9 @@ const Index = () => {
   const handleStatus = (e)=>{
     setStatus(e)
   }
+  useEffect(()=>{
+    jwtDecodeId()
+  },[])
 
   return (
     <div>

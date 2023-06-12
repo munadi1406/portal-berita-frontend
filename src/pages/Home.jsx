@@ -66,6 +66,7 @@ const Home = () => {
                   kategori={e.kategori}
                   key={e.artikelId}
                   image={e.image}
+                  createdAt ={e.createdAt}
                 />
               ))}
             </Suspense>

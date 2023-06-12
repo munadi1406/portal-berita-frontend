@@ -27,6 +27,7 @@ import Carousel from "../components/Carousel";
 import CollapseLoading from '../components/CollapseLoading'
 import KategoriData from "../pages/Dashboard/KategoriData";
 
+
 export {
   KategoriData,
   AuthCheck,

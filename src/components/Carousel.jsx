@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Loader from '../utils/loader';
 import { Link } from 'react-router-dom';
+import formatDateTime from '../utils/formatDateTime';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -56,7 +57,7 @@ const Carousel = ({ data }) => {
                                 <h1 className='text-white font-bold text-3xl text-left'>{e.title}</h1>
                                 <div className='flex justify-start items-start  w-full'>
                                     <div className='bg-blue-600 text-white rounded-full text-xs p-1'>{e.kategori}</div>
-                                    <div className='text-xs text-white p-1 font-bold'>{e.createdAt}</div>
+                                    <div className='text-xs text-white p-1 font-bold'>{formatDateTime(e.createdAt)}</div>
                                 </div>
                                 <Link to={`/article/${e.title.toLowerCase().replace(/\s/g, '-')}`} className='btn btn-accent'>Baca Sekarang</Link>
                             </div>

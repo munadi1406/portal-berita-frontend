@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { getKategori } from "../api/kategori";
 import PropTypes from "prop-types";
 import { useRef } from "react";
+import jwtDecodeId from './../utils/jwtDecodeId'
 
 
 export default function AddArtikel({ onAdded }) {
@@ -19,12 +20,13 @@ export default function AddArtikel({ onAdded }) {
     const [msg, setMsg] = useState()
     const [showModal, setShowModal] = useState(false);
     const modalRef = useRef()
+    const {idUsers} = jwtDecodeId()
 
     const insertArtikel = async (e) => {
         e.preventDefault();
-        // const formatKategori = kategori.join(',')
+        const formatKategori = kategori.join(',')
         try {
-            await insertArticle(title, content, prolog, kategori, image);
+            await insertArticle(idUsers,title, content, prolog, formatKategori, image);
             setShowModal(false)
             onAdded(true);
         } catch (error) {

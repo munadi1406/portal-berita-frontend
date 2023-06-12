@@ -4,18 +4,20 @@ import { PropTypes } from "prop-types";
 import { useParams } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import Loader from "../utils/loader";
+import formatDateTime from "../utils/formatDateTime";
 
 import { Parser } from "html-to-react";
-import { useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 
 const ArtikelByTitle = () => {
   const { title } = useParams();
   const [dataArtikel, setDataArtikel] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const location = useLocation();
 
   const getArtikelData = async () => {
+    setLoading(true)
     try {
       const data = await artikelByTitle(title);
       setDataArtikel(data.data.data);
@@ -25,7 +27,7 @@ const ArtikelByTitle = () => {
 
   useEffect(() => {
     getArtikelData();
-  }, []);
+  }, [location.pathname]);
   
   
   useEffect(() => {
@@ -78,7 +80,7 @@ h3.forEach((e)=>{
                 <div className="text-xs font-bold bg-primary w-max pl-2 pr-2 text-white rounded-full">
                   {e.kategori}
                 </div>
-                <div className="text-sm text-right">{e.createdAt}</div>
+                <div className="text-sm text-right">{formatDateTime(e.createdAt)}</div>
               </div>
               <img src={e.image} alt={e.title} loading="lazy" />
               <div >{Parser().parse(e.content)}</div>

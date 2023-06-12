@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const collapse = ({title,content}) => {
     const maxLength = 150; // Panjang maksimum konten yang ingin ditampilkan
-
+    const formattedTitle = title.toLowerCase().replace(/\s/g, "-");
   const truncatedContent = content.length > maxLength ? content.slice(0, maxLength) + '...' : content;
   return (
     <>
@@ -11,6 +13,7 @@ const collapse = ({title,content}) => {
         </div>
         <div className="collapse-content bg-primary text-primary-content [input:checked~&]:bg-secondary [input:checked~&]:text-secondary-content">
           <p>{truncatedContent}</p>
+        <Link to={`/article/${formattedTitle}`} className="link-primary">Baca Sekarang</Link>
         </div>
       </div>
     </>
