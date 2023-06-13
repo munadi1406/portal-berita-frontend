@@ -19,7 +19,7 @@ const Index = ({navbarTitle}) => {
     navbarTitle("Artikel")
     jwtDecodeId()
   },[])
-
+  
   return (
     <div>
       <h1>Data Article</h1>

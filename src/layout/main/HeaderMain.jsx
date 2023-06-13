@@ -32,8 +32,8 @@ const HeaderMain = () => {
   }, [darkMode]);
 
   return (
-      <nav className="navbar relative z-10">
-        <div className="navbar-start">
+      <nav className="navbar relative z-10 w-full flex justify-between pr-10 pl-10 items-center flex-row">
+        <div className="navbar-start w-1/2">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -77,7 +77,7 @@ const HeaderMain = () => {
             Cosmic
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link to={"/"} className="">
@@ -99,7 +99,7 @@ const HeaderMain = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end w-1/2 space-x-2 ">
           <div className="form-control">
             <label className="label cursor-pointer">
               <input
@@ -110,7 +110,7 @@ const HeaderMain = () => {
               />
             </label>
           </div>
-          <Link to={'/Login'} className="btn btn-secondary  rounded-full">Login</Link>
+          <Link to={'/Login'} className="bg-blue-500 hover:bg-blue-500/50 active:scale-95 h-10 w-36 text-white text-lg flex justify-center items-center  rounded-full">Login</Link>
         </div>
       </nav>
   );
