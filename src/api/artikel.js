@@ -7,6 +7,11 @@ export const getArtikel = async (page) => {
   return data;
 };
 
+export const getArtikelById = async (id,page) => {
+  const data = await axios.get(`${endpoint}/artikelById/${id}/${page}`);
+  return data;
+};
+
 export const artikelByTitle = async (title) => {
   const data = await axios.get(`${endpoint}/artikel/${title}`);
 

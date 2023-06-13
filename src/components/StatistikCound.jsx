@@ -1,8 +1,8 @@
 export default function StatistikCound() {
   return (
     <>
-      <div className="stats shadow">
-        <div className="stat">
+     <div className="stats shadow flex flex-wrap">
+  <div className="stat w-full sm:w-auto md:w-1/2 lg:w-1/3">
           <div className="stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@ export default function StatistikCound() {
           <div className="stat-desc">Jan 1st - Feb 1st</div>
         </div>
 
-        <div className="stat">
+        <div className="stat w-full sm:w-auto md:w-1/2 lg:w-1/3">
           <div className="stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ export default function StatistikCound() {
           <div className="stat-desc">↗︎ 400 (22%)</div>
         </div>
 
-        <div className="stat">
+        <div className="stat w-full sm:w-auto md:w-1/2 lg:w-1/3">
           <div className="stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"

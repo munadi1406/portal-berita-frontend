@@ -26,9 +26,11 @@ import Index from '../pages/Dashboard/Index'
 import Carousel from "../components/Carousel";
 import CollapseLoading from '../components/CollapseLoading'
 import KategoriData from "../pages/Dashboard/KategoriData";
+import CardDashBoard from "../components/CardDashBoard";
 
 
 export {
+  CardDashBoard,
   KategoriData,
   AuthCheck,
   PrivateRoute,
