@@ -77,9 +77,8 @@ export default function AddArtikel({ onAdded }) {
     return (
         <>
             <button className="btn btn-info" onClick={() => setShowModal(true)}>Add Article</button>
-
             {showModal && (
-                <div className="bg-black/30 w-screen absolute top-0 left-0 h-screen z-20 flex justify-center p-2" onClick={handleOutsideClick}>
+                <div className="bg-black/60 w-full absolute top-0 left-0 h-full z-20 flex justify-center p-2" onClick={handleOutsideClick}>
                     <form
                         encType="multipart/form-data"
                         className="bg-white w-3/4 rounded-md p-4 overflow-y-auto flex justify-center "
