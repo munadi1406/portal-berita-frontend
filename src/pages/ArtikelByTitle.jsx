@@ -73,7 +73,7 @@ h3.forEach((e)=>{
             <Helmet>
               <title>{e.title}</title>
             </Helmet>
-            <div key={e.artikelId} className="grid grid-cols-1 space-y-2" >
+            <div key={e.artikelId} className="grid grid-cols-1 space-y-2 p-2" >
               <div className="text-3xl font-bold">{e.title}</div>
               <div className="text-sm">{e.user.username}</div>
               <div className="grid grid-cols-2 w-full">
@@ -83,7 +83,7 @@ h3.forEach((e)=>{
                 <div className="text-sm text-right">{formatDateTime(e.createdAt)}</div>
               </div>
               <img src={e.image} alt={e.title} loading="lazy" />
-              <div >{Parser().parse(e.content)}</div>
+              <div className="p-2">{Parser().parse(e.content)}</div>
             </div>
           </HelmetProvider>
         ))

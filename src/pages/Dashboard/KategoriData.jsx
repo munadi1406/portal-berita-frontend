@@ -2,9 +2,9 @@ import { useState } from "react"
 import { deleteKategori, getKategori } from "../../api/kategori"
 import { useEffect } from "react"
 import AddKategori from "../../components/AddKategori"
+import PropTypes from 'prop-types'
 
-
-export default function KategoriData() {
+export default function KategoriData({navbarTitle}) {
   const [kategori, setKategori] = useState([])
   const [isKategoriAdded, setIsKategoriAdded] = useState(false);
 
@@ -19,6 +19,7 @@ export default function KategoriData() {
 
   useEffect(() => {
     getKategoriData()
+navbarTitle("Kategori")
   }, [])
 
 
@@ -73,4 +74,7 @@ export default function KategoriData() {
       </div>
     </div>
   )
+}
+KategoriData.propTypes={
+  navbarTitle:PropTypes.func.isRequired,
 }

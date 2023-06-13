@@ -71,8 +71,8 @@ const Home = () => {
               ))}
             </Suspense>
           )}
+          <button className={`btn btn-success col-span-full w-full  ${page >= totalPage?'hidden':''}`} onClick={()=>setPage(page + 1)}>Load More</button>
         </div>
-          <button className={`btn btn-success cols-span-full w-full  ${page >= totalPage?'hidden':''}`} onClick={()=>setPage(page + 1)}>Load More</button>
       </HelmetProvider>
     </>
   );

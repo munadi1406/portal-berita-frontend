@@ -21,7 +21,7 @@ import Main from "../app/Main";
 import Dashboard from "../app/Dashboard";
 
 import Index from '../pages/Dashboard/Index'
-import Post from "../pages/Dashboard/Post";
+
 
 import Carousel from "../components/Carousel";
 import CollapseLoading from '../components/CollapseLoading'
@@ -45,7 +45,6 @@ export {
   FooterDashboard,
   Dashboard,
   Index,
-  Post,
   Login,
   ArtikelByTitle,
   Sidebar,
