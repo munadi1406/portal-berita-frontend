@@ -55,13 +55,13 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen">
       <HelmetProvider>
         <Helmet>
           <title>Cosmic | Ayo Baca Lurr</title>
         </Helmet>
         <Carousel data={dataCarousel} />
-        <div className="p-2 min-h-screen">
+        <div className="p-2">
           {loading ? (
             error ? (
               <Error msg={msg} />
@@ -69,7 +69,7 @@ const Home = () => {
               <Loader />
             )
           ) : (
-            <div className="grid grid-cols-3 space-x-1 space-y-1 ">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 space-x-1 space-y-1 ">
               <Suspense fallback={<SkeletonLoading />}>
                 {data.map((e) => (
                   <Card
@@ -94,7 +94,7 @@ const Home = () => {
           )}
         </div>
       </HelmetProvider>
-    </>
+    </div>
   );
 };
 

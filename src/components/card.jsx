@@ -28,17 +28,19 @@ export default function Card({ title, prolog, kategori, image, createdAt }) {
   
 
   return (
-    <>
-      <div className="card h-96 image-full shadow-md">
-        <figure>
+    <div className="relative">
+      <div className="card shadow-md overflow-clip text-white/75">
           <LazyLoadImage
             src={image}
             alt={title}
-            className="object-cover h-full min-w-full"
+            className="object-cover object-center absolute top-0 left-0 z-0"
             effect="blur"
           />
-        </figure>
-        <div className="card-body grid grid-cols-1">
+          {/* gradiend */}
+          <div className="absolute w-full h-full top-0 left-0 bg-black/70 z-10">
+
+          </div>
+        <div className="card-body grid grid-cols-1 relative z-10">
           <h2 className="card-title " title={title}>
             {truncatedTitle}
           </h2>
@@ -68,7 +70,7 @@ export default function Card({ title, prolog, kategori, image, createdAt }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
