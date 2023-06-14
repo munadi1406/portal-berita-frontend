@@ -19,7 +19,7 @@ const HeaderMain = () => {
   const handleClick = () => {
     document
       .querySelector("body")
-      .setAttribute("data-theme", `${darkMode ? "dark" : "light"}`);
+      .setAttribute("data-theme", `${darkMode ? "dark" : "mytheme"}`);
   };
 
   useEffect(() => {
@@ -147,7 +147,7 @@ const HeaderMain = () => {
                 />
               </label>
             </div>
-            <Link to={'/Login'} className="bg-blue-500 hover:bg-blue-500/50 active:scale-95 h-10 w-1/3  text-white text-lg flex justify-center items-center  rounded-full">Login</Link>
+            <Link to={'/Login'} className="bg-info hover:bg-blue-500/50 active:scale-95 h-10 w-1/3  text-white text-lg flex justify-center items-center  rounded-full">Login</Link>
           </div>
         </div>
       </div>

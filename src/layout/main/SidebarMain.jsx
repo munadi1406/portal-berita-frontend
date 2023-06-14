@@ -32,7 +32,7 @@ const SidebarMain = () => {
         ) : (
           <Suspense fallback={<CollapseLoading />}>
             {data.map((e) => (
-              <Collapse title={e.title} content={e.prolog} key={e.artikelId} />
+              <Collapse title={e.title} key={e.artikelId} />
             ))}
           </Suspense>
         )}

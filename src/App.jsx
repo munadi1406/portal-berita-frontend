@@ -4,7 +4,7 @@ import { Dashboard, Login, Main, } from "./utils/imports";
 
 function App() {
   useEffect(() => {
-    document.querySelector("body").setAttribute("data-theme", "light");
+    document.querySelector("body").setAttribute("data-theme", "mytheme");
   }, []);
   return (
     <div className="max-w-screen min-w-full">

@@ -61,7 +61,7 @@ export default function Card({ title, prolog, kategori, image, createdAt }) {
           <div className="card-actions justify-end">
             <Link
               to={`/article/${formattedTitle}`}
-              className="btn btn-primary w-full text-sm"
+              className="btn btn-accent w-full text-sm"
             >
               Baca Selengkapnya Lur{" "}
             </Link>

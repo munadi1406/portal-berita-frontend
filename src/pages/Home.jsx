@@ -3,7 +3,7 @@ import { getArtikel } from "../api/artikel";
 import { useState, useEffect, Suspense, lazy } from "react";
 import Loader from "../utils/loader";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { SkeletonLoading ,Carousel } from "../utils/imports";
+import { SkeletonLoading, Carousel } from "../utils/imports";
 import Error from "../components/Error";
 
 const Card = lazy(() => import("../components/card"));
@@ -60,8 +60,8 @@ const Home = () => {
         <Helmet>
           <title>Cosmic | Ayo Baca Lurr</title>
         </Helmet>
-          <Carousel data={dataCarousel} />
-        <div className="p-2 grid lg:grid-cols-3 gap-2 md:grid-cols-2 sm:grid-cols-1 min-h-screen">
+        <Carousel data={dataCarousel} />
+        <div className="p-2 min-h-screen">
           {loading ? (
             error ? (
               <Error msg={msg} />
@@ -69,7 +69,7 @@ const Home = () => {
               <Loader />
             )
           ) : (
-            <>
+            <div className="grid grid-cols-3 space-x-1 space-y-1 ">
               <Suspense fallback={<SkeletonLoading />}>
                 {data.map((e) => (
                   <Card
@@ -83,14 +83,14 @@ const Home = () => {
                 ))}
               </Suspense>
               <button
-                className={`btn btn-success col-span-full w-full  ${
+                className={`btn btn-secondary col-span-full w-full  ${
                   page >= totalPage ? "hidden" : ""
                 }`}
                 onClick={() => setPage(page + 1)}
               >
                 Load More
               </button>
-            </>
+            </div>
           )}
         </div>
       </HelmetProvider>
