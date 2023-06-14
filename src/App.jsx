@@ -7,7 +7,7 @@ function App() {
     document.querySelector("body").setAttribute("data-theme", "light");
   }, []);
   return (
-    <div className="min-h-max">
+    <div className="max-w-screen min-w-full">
       <BrowserRouter>
         <Routes>
           <Route path="*" element={<Main />} />

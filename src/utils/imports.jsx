@@ -11,7 +11,6 @@ import Navbar from "../layout/dashboard/Navbar";
 import Sidebar from "../layout/dashboard/Sidebar";
 import Statistik from "../pages/Dashboard/Statistik";
 import SkeletonLoading from "../components/SkeletonLoading";
-import PrivateRoute from "./PrivateRoute";
 import AuthCheck from "./AuthCheck";
 
 import ArtikelByTitle from "../pages/ArtikelByTitle";
@@ -19,6 +18,7 @@ import Pengaturan from "../pages/Dashboard/Pengaturan";
 
 import Main from "../app/Main";
 import Dashboard from "../app/Dashboard";
+
 
 import Index from '../pages/Dashboard/Index'
 
@@ -33,7 +33,6 @@ export {
   CardDashBoard,
   KategoriData,
   AuthCheck,
-  PrivateRoute,
   CollapseLoading,
   SkeletonLoading,
   Carousel,

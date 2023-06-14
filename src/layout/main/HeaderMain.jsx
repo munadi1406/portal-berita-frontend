@@ -32,7 +32,7 @@ const HeaderMain = () => {
   }, [darkMode]);
 
   return (
-      <nav className="navbar relative z-10 w-full flex justify-between pr-10 pl-10 items-center flex-row">
+      <nav className="navbar relative z-10 w-full flex justify-between pr-10 pl-10 items-center flex-row min-w-screen">
         <div className="navbar-start w-1/2">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
