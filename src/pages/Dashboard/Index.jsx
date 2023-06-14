@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import jwtDecodeId from "./../../utils/jwtDecodeId";
 import PropTypes from "prop-types";
 import StatistikCound from "../../components/StatistikCound";
-import { getArtikelById } from "../../api/artikel";
+import { deleteArtikel, getArtikelById } from "../../api/artikel";
 
 const AddArtikel = lazy(() => import("../../components/AddArtikel"));
 const CardDashBoard = lazy(()=>import('../../components/CardDashBoard'))
@@ -16,7 +16,6 @@ const Index = ({ navbarTitle }) => {
   const handleStatus = (e) => {
     setStatus(e);
   };
-
   const getArtikelPostById = async () => {
     try {
       const {idUsers} = jwtDecodeId();
@@ -24,6 +23,16 @@ const Index = ({ navbarTitle }) => {
       setDataArtikel(data.data.data)
     } catch (error) {console.log(error)}
   };
+
+  const deleteArtikelPost = async(id)=>{
+    try {
+        await deleteArtikel(id)
+        await getArtikelPostById()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   useEffect(() => {
     navbarTitle("Artikel");
@@ -40,8 +49,8 @@ const Index = ({ navbarTitle }) => {
           <AddArtikel onAdded={handleStatus} />
         </Suspense>
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 space-x-1 space-y-1">
-            {dataArtikel.map((e,i)=>(
-              <CardDashBoard key={i} title={e.title} image={e.image} prolog={e.prolog}/>
+            {dataArtikel.map((e)=>(
+              <CardDashBoard key={e.artikelId} title={e.title} image={e.image} prolog={e.prolog} deleteArtikel={deleteArtikelPost} id={e.artikelId}/>
             ))}
           </div>
     </div>

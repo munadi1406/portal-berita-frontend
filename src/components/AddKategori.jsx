@@ -11,10 +11,8 @@ export default function AddKategori({onKategoriAdded}) {
               await addKategori(KategoriInput);
               setShowModal(false)
               onKategoriAdded(true)
-              // console.log(data)
             } catch (error) {
               onKategoriAdded(false)
-              // console.log(error)
           }
       }
   return (

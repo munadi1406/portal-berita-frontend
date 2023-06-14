@@ -18,6 +18,13 @@ export const artikelByTitle = async (title) => {
   return data;
 };
 
+
+export const deleteArtikel = async (id) => {
+  const data = await axios.delete(`${endpoint}/artikel/${id}`);
+
+  return data;
+};
+
 export const insertArticle = async (id,title, content,prolog, kategori, image) => {
     const formData = new FormData();
     formData.append('publisherId', id);

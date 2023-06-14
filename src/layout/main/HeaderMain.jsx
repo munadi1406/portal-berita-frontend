@@ -120,7 +120,7 @@ const HeaderMain = () => {
             <ul className="menu menu-horizontal">
               {/* Navbar menu content here */}
               <li>
-                <a>Home</a>
+              <Link to={'./'}>Home</Link>
               </li>
               <li>
                 <details className="dropdown">
@@ -155,7 +155,7 @@ const HeaderMain = () => {
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
         <ul className="menu w-56 bg-white min-h-screen">
           <li>
-            <a>Home</a>
+            <Link to={'./'}>Home</Link>
           </li>
           <li>
             <details open>
