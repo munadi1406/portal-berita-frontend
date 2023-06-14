@@ -136,7 +136,7 @@ const HeaderMain = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="flex-grow justify-end items-center flex">
             <div className="form-control">
               <label className="label cursor-pointer">
                 <input
@@ -147,7 +147,7 @@ const HeaderMain = () => {
                 />
               </label>
             </div>
-            <Link to={'/Login'} className="bg-blue-500 hover:bg-blue-500/50 active:scale-95 h-10 w-36 text-white text-lg flex justify-center items-center  rounded-full">Login</Link>
+            <Link to={'/Login'} className="bg-blue-500 hover:bg-blue-500/50 active:scale-95 h-10 w-1/3  text-white text-lg flex justify-center items-center  rounded-full">Login</Link>
           </div>
         </div>
       </div>
