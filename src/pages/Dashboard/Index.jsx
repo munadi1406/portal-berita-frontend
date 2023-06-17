@@ -6,6 +6,7 @@ import jwtDecodeId from "./../../utils/jwtDecodeId";
 import PropTypes from "prop-types";
 import StatistikCound from "../../components/StatistikCound";
 import { deleteArtikel, getArtikelById } from "../../api/artikel";
+import HelmetTitle from '../../utils/HelmetTitle'
 
 const AddArtikel = lazy(() => import("../../components/AddArtikel"));
 const CardDashBoard = lazy(()=>import('../../components/CardDashBoard'))
@@ -41,6 +42,7 @@ const Index = ({ navbarTitle }) => {
 
   return (
     <div className="w-full">
+    <HelmetTitle title="Artikel Data"/>
       <h1 className="text-2xl text-white">Data Article</h1>
         {status && <h1>Data Berhasil Di Tambahakan</h1>}
       

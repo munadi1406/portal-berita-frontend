@@ -15,15 +15,14 @@ export default function Login() {
     try {
       const data = await login(email, password);
       if (data.data.accessToken) {
-        Cookies.set("at", data.data.accessToken, {});
-        Cookies.set("rt", data.data.refreshToken, { expires: 7 });
+        Cookies.set("at", data.data.accessToken,{ httpOnly: false, secure: true, sameSite: 'strict' });
+        Cookies.set("rt", data.data.refreshToken, { httpOnly:false ,expires: 7 ,secure: true, sameSite: 'strict' });
         redirect("/dashboard");
       }
     } catch (error) {
       setMsg(error.response.data.msg);
     }
   };
-
   useEffect(() => {
     const isAuthenticated = AuthCheck();
     if (!isAuthenticated) {
@@ -39,7 +38,6 @@ export default function Login() {
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left text-white">
             <h1 className="text-5xl font-bold">Login now!</h1>
-            <h1 className="text-center text-xs text-red-500 col-span-4">{msg}</h1>
             <p className="py-6">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
@@ -48,6 +46,7 @@ export default function Login() {
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
+            <h1 className="text-center text-xs text-red-500 col-span-4">{msg}</h1>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -79,7 +78,7 @@ export default function Login() {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary" onClick={() => auth()}>
+                <button className="btn btn-info" onClick={() => auth()}>
                   Login
                 </button>
               </div>

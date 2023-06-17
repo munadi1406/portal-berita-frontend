@@ -5,7 +5,7 @@ export default function HelmetTitle({title}) {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>{title}</title>
+        <title>Cosmic | {title}</title>
       </Helmet>
     </HelmetProvider>
   )

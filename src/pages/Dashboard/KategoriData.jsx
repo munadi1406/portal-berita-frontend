@@ -3,6 +3,7 @@ import { addKategori, deleteKategori, getKategori } from "../../api/kategori";
 import { useEffect } from "react";
 import AddKategori from "../../components/AddKategori";
 import PropTypes from "prop-types";
+import HelmetTitle from "../../utils/HelmetTitle";
 
 export default function KategoriData({ navbarTitle }) {
   const [kategori, setKategori] = useState([]);
@@ -59,6 +60,7 @@ export default function KategoriData({ navbarTitle }) {
 
   return (
     <div>
+     <HelmetTitle title="Kategori Data"/>
       <AddKategori onKategoriAdded={handleKategoriAdded} />
       <div className="alert alert-success">
         {isKategoriAdded && (

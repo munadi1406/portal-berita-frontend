@@ -19,6 +19,12 @@ export const artikelByTitle = async (title) => {
 };
 
 
+export const artikelByKategori = async (kategori,page) => {
+  const data = await axios.get(`${endpoint}/artikelByKategori/${kategori}/${page}`);
+
+  return data;
+};
+
 export const deleteArtikel = async (id) => {
   const data = await axios.delete(`${endpoint}/artikel/${id}`);
 

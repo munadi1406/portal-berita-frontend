@@ -9,5 +9,4 @@ export default function jwtDecodeId() {
   } catch (error) {
     // console.log(error)
   }
-   
 }
