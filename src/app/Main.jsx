@@ -13,7 +13,7 @@ export default function Main() {
           <div className="flex flex-wrap pl-6 pr-6 max-w-6xl m-auto">
             <main className="min-h-screen lg:w-3/4 sm:w-full relative z-0 w-full">
               <Routes>
-                <Route exact path="/" element={<Home />} />
+                <Route  path="/" element={<Home />} />
                 <Route path="/kategori/:kategori" element={<Kategori />} />
                 <Route path="/article/:title" element={<ArtikelByTitle />} />
               </Routes>

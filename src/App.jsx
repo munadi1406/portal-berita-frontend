@@ -10,7 +10,7 @@ function App() {
     <div className="max-w-screen min-w-full">
       <BrowserRouter>
         <Routes>
-          <Route path="*" element={<Main />} />
+        <Route path="/*" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>
