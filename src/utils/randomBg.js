@@ -4,12 +4,14 @@ export default function randomBg() {
       "bg-secondary",
       "bg-accent",
       "bg-neutral",
-      "info",
+      "bg-info",
       "bg-warning",
     ];
     
     const randomBg = () => {
-      return Math.floor(Math.random() * bgColor.length);
+      const randomIndex = Math.floor(Math.random() * bgColor.length);
+      return bgColor[randomIndex];
     };
-    return bgColor[randomBg()];
+  
+    return randomBg();
   }

@@ -3,10 +3,12 @@ import { getArtikel } from "../api/artikel";
 import { useState, useEffect, Suspense, lazy } from "react";
 import Loader from "../utils/loader";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { SkeletonLoading, Carousel } from "../utils/imports";
+import { SkeletonLoading } from "../utils/imports";
 import Error from "../components/Error";
+import SkeletonCarousel from "../components/SkeletonCarousel";
 
 const Card = lazy(() => import("../components/card"));
+const  Carousel = lazy(()=>import ("../components/Carousel"));
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -28,9 +30,7 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
-    getArtikelData();
-  }, []);
+  
 
   useEffect(() => {
     getArtikelData();
@@ -49,8 +49,8 @@ const Home = () => {
       }
     }
   };
-
   useEffect(() => {
+    getArtikelData();
     getDataCarousel();
   }, []);
 
@@ -60,7 +60,9 @@ const Home = () => {
         <Helmet>
           <title>Cosmic | Ayo Baca Lurr</title>
         </Helmet>
-        <Carousel data={dataCarousel} />
+          <Suspense fallback={<SkeletonCarousel/>}>
+            <Carousel data={dataCarousel} />
+          </Suspense>
         <div className="p-2">
           {loading ? (
             error ? (
@@ -83,9 +85,8 @@ const Home = () => {
                 ))}
               </Suspense>
               <button
-                className={`btn btn-secondary col-span-full w-full  ${
-                  page >= totalPage ? "hidden" : ""
-                }`}
+                className={`btn btn-secondary col-span-full w-full  ${page >= totalPage ? "hidden" : ""
+                  }`}
                 onClick={() => setPage(page + 1)}
               >
                 Load More
