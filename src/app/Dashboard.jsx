@@ -9,7 +9,7 @@ import {
   AuthCheck,
   KategoriData,
 } from "../utils/imports";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate,Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useRef } from "react";
 
@@ -22,7 +22,8 @@ export default function Dashboard() {
   useEffect(() => {
     const isAuthenticated = AuthCheck();
     if (!isAuthenticated) {
-      redirect("/Login");
+      // redirect("/Login");
+      return <Navigate to={'/Login'} replace={true}/>
     }
   }, []);
 
