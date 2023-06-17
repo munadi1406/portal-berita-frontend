@@ -12,12 +12,16 @@ const Kategori = () => {
   const { kategori } = useParams();
   const [dataBykategori, setDataByKategori] = useState([]);
   const [notFound, setNotFound] = useState();
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState();
 
   const getDataByKategori = async () => {
     try {
-      const data = await artikelByKategori(kategori, 1);
+      const data = await artikelByKategori(kategori, page);
       if (data.data.data.length > 0) {
-        setDataByKategori(data.data.data);
+        const newData = data.data.data;
+        setDataByKategori(data.concat(newData));
+        setTotalPage(data.data.totalPages);
         setNotFound(false)
       } else {
         setNotFound(true);
@@ -32,6 +36,10 @@ const Kategori = () => {
     getDataByKategori();
     console.log(location);
   }, [location.pathname]);
+
+  useEffect(() => {
+    getDataByKategori();
+  }, [page]);
 
   return (
     <>
@@ -52,6 +60,13 @@ const Kategori = () => {
                 createdAt={e.createdAt}
               />
             ))}
+            <button
+                className={`btn btn-secondary col-span-full w-full  ${page >= totalPage ? "hidden" : ""
+                  }`}
+                onClick={() => setPage(page + 1)}
+              >
+               Load More
+              </button>
           </Suspense>
         </div>
       )}
