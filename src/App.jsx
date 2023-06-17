@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Dashboard, Login, Main, } from "./utils/imports";
+import { HashRouter } from "react-router-dom";
 
 function App() {
   useEffect(() => {
@@ -8,13 +9,13 @@ function App() {
   }, []);
   return (
     <div className="max-w-screen min-w-full">
-      <BrowserRouter>
+     <HashRouter>
         <Routes>
         <Route path="/*" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
