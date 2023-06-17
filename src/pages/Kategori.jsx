@@ -34,12 +34,9 @@ const Kategori = () => {
 
   useEffect(() => {
     getDataByKategori();
-    console.log(location);
-  }, [location.pathname]);
+  }, [location.pathname,page]);
 
-  useEffect(() => {
-    getDataByKategori();
-  }, [page]);
+ 
 
   return (
     <>
