@@ -9,7 +9,7 @@ import {
   AuthCheck,
   KategoriData,
 } from "../utils/imports";
-import { Routes, Route, useNavigate,Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useRef } from "react";
 
@@ -57,7 +57,7 @@ export default function Dashboard() {
     <div className="flex justify-between items-center px-4 py-2 bg-blue-500 transition-all ease" >
       <Navbar onClickSidebar={handleClickSidebar} title={navbarTitle}/>
     </div>
-    <div className="flex-grow p-2 overflow-y-auto bg-gradient-to-r from-slate-600 to-white">
+    <div className="flex-grow p-2 overflow-y-auto bg-base-100 ">
       <Routes>
         <Route path="/" element={<Index navbarTitle={handleNavbarTitle}/>} />
         <Route path="/statistik" element={<Statistik navbarTitle={handleNavbarTitle}/>} />

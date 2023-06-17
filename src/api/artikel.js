@@ -7,8 +7,8 @@ export const getArtikel = async (page) => {
   return data;
 };
 
-export const getArtikelById = async (id,page) => {
-  const data = await axios.get(`${endpoint}/artikelById/${id}/${page}`);
+export const getArtikelById = async (id) => {
+  const data = await axios.get(`${endpoint}/artikelById/${id}`);
   return data;
 };
 

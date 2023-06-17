@@ -1,8 +1,8 @@
 export default function StatistikCound() {
   return (
     <>
-     <div className="stats shadow flex flex-wrap">
-  <div className="stat w-full sm:w-auto md:w-1/2 lg:w-1/3">
+      <div className="stats shadow flex flex-wrap">
+        <div className="stat w-full sm:w-auto md:w-1/2 lg:w-1/3">
           <div className="stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"

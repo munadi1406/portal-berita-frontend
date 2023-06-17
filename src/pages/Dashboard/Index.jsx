@@ -7,9 +7,9 @@ import PropTypes from "prop-types";
 import StatistikCound from "../../components/StatistikCound";
 import { deleteArtikel, getArtikelById } from "../../api/artikel";
 import HelmetTitle from '../../utils/HelmetTitle'
+import TableArtikel from "../../components/TableArtikel";
 
 const AddArtikel = lazy(() => import("../../components/AddArtikel"));
-const CardDashBoard = lazy(()=>import('../../components/CardDashBoard'))
 
 const Index = ({ navbarTitle }) => {
   const [status, setStatus] = useState(false);
@@ -20,7 +20,7 @@ const Index = ({ navbarTitle }) => {
   const getArtikelPostById = async () => {
     try {
       const {idUsers} = jwtDecodeId();
-      const data = await getArtikelById(idUsers, 1);
+      const data = await getArtikelById(idUsers);
       setDataArtikel(data.data.data)
     } catch (error) {console.log(error)}
   };
@@ -41,20 +41,15 @@ const Index = ({ navbarTitle }) => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full grid grid-cols-1 space-y-1">
     <HelmetTitle title="Artikel Data"/>
-      <h1 className="text-2xl text-white">Data Article</h1>
+      <h1 className="text-2xl">Data Article</h1>
         {status && <h1>Data Berhasil Di Tambahakan</h1>}
-      
         <StatistikCound />
         <Suspense fallback={<Loader />}>
           <AddArtikel onAdded={handleStatus} />
         </Suspense>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 space-x-1 space-y-1">
-            {dataArtikel.map((e)=>(
-              <CardDashBoard key={e.artikelId} title={e.title} image={e.image} prolog={e.prolog} deleteArtikel={deleteArtikelPost} id={e.artikelId}/>
-            ))}
-          </div>
+          <TableArtikel dataArtikel={dataArtikel} deleteArtikel={deleteArtikelPost}/>
     </div>
   );
 };
