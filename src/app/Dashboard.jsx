@@ -22,8 +22,7 @@ export default function Dashboard() {
   useEffect(() => {
     const isAuthenticated = AuthCheck();
     if (!isAuthenticated) {
-      // redirect("/Login");
-      return <Navigate to={'/Login'} replace={true}/>
+      redirect("/Login");
     }
   }, []);
 
