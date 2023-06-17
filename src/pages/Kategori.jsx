@@ -20,7 +20,7 @@ const Kategori = () => {
       const data = await artikelByKategori(kategori, page);
       if (data.data.data.length > 0) {
         const newData = data.data.data;
-        setDataByKategori(data.concat(newData));
+        setDataByKategori(dataBykategori.concat(newData));
         setTotalPage(data.data.totalPages);
         setNotFound(false)
       } else {
