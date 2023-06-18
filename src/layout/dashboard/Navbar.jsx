@@ -1,5 +1,16 @@
 import PropTypes from "prop-types";
+// import logoutClearCookie from "../../utils/LogoutClearCookie";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
 export default function Navbar({ onClickSidebar, title }) {
+  const redirect = useNavigate();
+  const handleLogout = async () => {
+     Cookies.remove("rt");
+     Cookies.remove("at");
+    redirect("/Login");
+    return;
+  };
   return (
     <div className="flex justify-between items-center w-full">
       <div className=" w-max h-max flex justify-center items-center">
@@ -27,30 +38,9 @@ export default function Navbar({ onClickSidebar, title }) {
       </div>
 
       <h1 className="text-2xl font-semibold text-white">{title}</h1>
-      <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-          </div>
-        </label>
-        <ul
-          tabIndex={0}
-          className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-        >
-          <li>
-            <a className="justify-between">
-              Profile
-              <span className="badge">New</span>
-            </a>
-          </li>
-          <li>
-            <a>Settings</a>
-          </li>
-          <li>
-            <a>Logout</a>
-          </li>
-        </ul>
-      </div>
+      <button className="btn btn-accent text-base-100" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 }

@@ -26,6 +26,7 @@ export default function Dashboard() {
     }
   }, []);
 
+  
   const handleClickSidebar = () => {
     setSidebar(!sidebar);
   };
