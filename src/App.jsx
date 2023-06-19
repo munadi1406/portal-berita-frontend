@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Dashboard, Login, Main, } from "./utils/imports";
 import { HashRouter } from "react-router-dom";
+import Register from "./pages/Register";
 
 function App() {
   useEffect(() => {
@@ -13,6 +14,7 @@ function App() {
         <Routes>
         <Route path="/*" element={<Main />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>
       </HashRouter>

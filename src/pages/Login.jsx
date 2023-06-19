@@ -1,26 +1,30 @@
 import { login } from "../api/login";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useEffect } from "react";
 import AuthCheck from "../utils/AuthCheck";
+import HelmetTitle from "../utils/HelmetTitle";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const redirect = useNavigate();
+  const [loading, setLoading] = useState(false)
 
   const auth = async () => {
     try {
+      setLoading(true)
       const data = await login(email, password);
       if (data.data.accessToken) {
-        Cookies.set("at", data.data.accessToken,{ httpOnly: false, secure: true, sameSite: 'strict' });
-        Cookies.set("rt", data.data.refreshToken, { httpOnly:false ,expires: 7 ,secure: true, sameSite: 'strict' });
+        Cookies.set("at", data.data.accessToken, { httpOnly: false, secure: true, sameSite: 'strict' });
+        Cookies.set("rt", data.data.refreshToken, { httpOnly: false, expires: 7, secure: true, sameSite: 'strict' });
         redirect("/dashboard");
       }
     } catch (error) {
       setMsg(error.response.data.msg);
+    } finally {
+      setLoading(false)
     }
   };
   useEffect(() => {
@@ -34,19 +38,18 @@ export default function Login() {
 
   return (
     <>
+    <HelmetTitle title="Login"/>
       <div className="hero min-h-screen bg-slate-800 ">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left text-white">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+            <h1 className="text-5xl font-bold mb-6 font-sans">Sign in to your account</h1>
+            <q className="">
+              Bagaimana cara seorang mengganti bola lampu? Mereka hanya perlu mengetik <span className="text-2xl text-base-100 font-sans font-bold">lightBulb.replace(&ldquo;burned&rdquo;, &ldquo;new&rdquo;)</span> dan semuanya beres!
+            </q>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
-            <h1 className="text-center text-xs text-red-500 col-span-4">{msg}</h1>
+              <h1 className="text-center text-xs text-red-500 col-span-4">{msg}</h1>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -72,14 +75,14 @@ export default function Login() {
                   required
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
+                  <Link to={'/Register'} className="label-text-alt link link-hover">
+                    Register
+                  </Link>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-info" onClick={() => auth()}>
-                  Login
+                <button className="btn btn-info text-base-100" onClick={() => auth()}>
+                  {loading ? 'Loading...' : 'Login'}
                 </button>
               </div>
             </div>

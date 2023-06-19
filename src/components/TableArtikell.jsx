@@ -1,34 +1,27 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types'
-import { convert } from 'html-to-text'
+import { useState ,useContext} from 'react';
 import formatDateTime from '../utils/formatDateTime';
 import pisahKategori from '../utils/pisahKategori';
 import randomBg from '../utils/randomBg';
+import TextComponent from './TextComponent';
+import FunctionContext from './FunctionContext';
 
 
-const TableArtikell = ({ data,deleteArtikel}) => {
+
+const TableArtikell = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [dataArtikell, setDataArtikel] = useState([])
+    const {deleteArtikelPost,dataArtikel} = useContext(FunctionContext)
 
-    useEffect(() => {
-        setDataArtikel(data)
-    }, [data])
 
+    
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
     };
 
-    const filteredData = dataArtikell.filter((item) =>
+    const filteredData = dataArtikel.filter((item) =>
         item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const HtmltoText = (e) => {
-        const content = convert(e);
-        const maxLength = 75; // Panjang maksimum konten yang ingin ditampilkan
-        const truncatedTitle =
-            content.length > maxLength ? content.slice(0, maxLength) + "..." : content;
-        return truncatedTitle
-    };
+    
     return (
         <div className="overflow-x-auto">
             <input
@@ -38,13 +31,13 @@ const TableArtikell = ({ data,deleteArtikel}) => {
                 onChange={handleSearch}
                 className="m-2 input input-bordered input-info"
             />
-            <table className="table table-md table-zebra table-pin-rows table-pin-cols">
+            <table className="table table-zebra table-pin-rows">
                 <thead >
                     <tr className=''>
                         <th className="px-4 py-2 text-lg border-b-2 bg-info text-base-100 border border-white text-center">Publisher</th>
                         <th className="px-4 py-2 text-lg border-b-2 bg-info text-base-100 border border-white text-center">Title</th>
                         <th className="px-4 py-2 text-lg border-b-2 bg-info text-base-100 border border-white text-center">Prolog</th>
-                        <th className="px-4 py-2 text-lg border-b-2 bg-info text-base-100 border border-white text-center">Content</th>
+                        <th className="px-4 py-2 text-lg border-b-2 bg-info text-base-100 border border-white text-center ">Content</th>
                         <th className="px-4 py-2 text-lg border-b-2 bg-info text-base-100 border border-white text-center">Kategori</th>
                         <th className="px-4 py-2 text-lg border-b-2 bg-info text-base-100 border border-white text-center">Created At</th>
                         <th className="px-4 py-2 text-lg border-b-2 bg-info text-base-100 border border-white text-center">Image</th>
@@ -53,13 +46,16 @@ const TableArtikell = ({ data,deleteArtikel}) => {
                 </thead>
                 <tbody>
                     {filteredData.map((item) => (
-                        <tr key={item.id} className='hover'>
+                        <tr key={item.artikelId} className='hover'>
                             <td className="px-4 py-2">{item.user.username}</td>
                             <td className="px-4 py-2">{item.title}</td>
                             <td className="px-4 py-2">ini prolog</td>
-                            <td className="px-4 py-2 lowercase">{HtmltoText(item.content)}</td>
+                            <td className="px-4 py-2 lowercase ">
+                            <div className='w-[400px]'>
+                            {<TextComponent fullText={item.content} />}
+                            </div></td>
                             <td className="px-4 py-2 flex flex-wrap justify-center items-center">{
-                                pisahKategori(item.kategori).map((e,i)=>(
+                                pisahKategori(item.kategori).map((e, i) => (
                                     <div key={i} className={`badge text-white ${randomBg()}`}>{e}</div>
                                 ))
                             }</td>
@@ -68,7 +64,7 @@ const TableArtikell = ({ data,deleteArtikel}) => {
                             <td className="px-4 py-2">
                                 <div className='flex flex-wrap w-max space-y-1'>
                                     <button className='btn btn-info w-full'>Edit</button>
-                                    <button className="btn btn-warning w-full" onClick={()=>deleteArtikel(item.artikelId)}>Hapus</button>
+                                    <button className="btn btn-warning w-full" onClick={() => deleteArtikelPost(item.artikelId)}>Hapus</button>
                                 </div>
                             </td>
                         </tr>
@@ -78,10 +74,5 @@ const TableArtikell = ({ data,deleteArtikel}) => {
         </div>
     );
 };
-
-TableArtikell.propTypes = {
-    data: PropTypes.array.isRequired,
-    deleteArtikel:PropTypes.func
-}
 
 export default TableArtikell;

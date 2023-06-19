@@ -1,20 +1,18 @@
-export default function Modal({status,changeStatus,msg}) {
-    console.log(status)
+export default function Modal({ active, msg ,closeModal }) {
   return (
     <>
-      <input type="checkbox" id="my_modal_7" className="modal-toggle" checked={status}/>
-      <div className="modal">
+      <div className={`modal ${active?'modal-open':''}`} >
         <div className="modal-box">
-          <h3 className="text-lg font-bold">Hello!</h3>
+          <h3 className="text-lg font-bold">Message</h3>
           <p className="py-4">{msg}</p>
         </div>
-        <button className="modal-backdrop" htmlFor="my_modal_7" onClick={()=>changeStatus(false)}>
+        <button
+          className="modal-backdrop modal-close" onClick={closeModal}
+          htmlFor="my_modal_7"
+        >
           Close
         </button>
       </div>
     </>
   );
 }
-
-
-

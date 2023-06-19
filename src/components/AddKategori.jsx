@@ -1,38 +1,68 @@
-import { useState } from "react";
+import { useState ,useContext} from "react";
 import { addKategori } from "../api/kategori";
-import PropTypes from 'prop-types';
+import FunctionContext from "./FunctionContext";
 
-export default function AddKategori({onKategoriAdded}) {
-    const [showModal,setShowModal] = useState(false)
-    const [KategoriInput, setKategoriInput] = useState("")
-    const handleSubmit = async (e)=>{
-          e.preventDefault()
-          try {
-              await addKategori(KategoriInput);
-              setShowModal(false)
-              onKategoriAdded(true)
-            } catch (error) {
-              onKategoriAdded(false)
-          }
-      }
+export default function AddKategori() {
+  const [showModal, setShowModal] = useState(false);
+  const [KategoriInput, setKategoriInput] = useState("");
+  const [msg,setMsg] = useState('')
+  const {handleKategoriAdded} = useContext(FunctionContext)
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const insertKategrori = await addKategori(KategoriInput);
+      setShowModal(false);
+      handleKategoriAdded(insertKategrori.data.msg);
+    } catch (error) {
+      setMsg(error.response.data.msg)
+    }
+  };
+
+
+  const handleClick = () => {
+    setKategoriInput('')
+    setMsg('')
+    setShowModal(!showModal);
+  };
+
   return (
     <>
-     <button className="btn btn-primary" onClick={()=>{setShowModal(true); setKategoriInput("")}}>Add Kategori</button>
-      <input type="checkbox" id="my_modal_6" className="modal-toggle" checked={showModal}/>
+      <label htmlFor="my_modal_7" className="btn btn-info text-base-100" onClick={handleClick}>
+        Add Kategori
+      </label>
+      <input
+        type="checkbox"
+        id="my_modal_7"
+        className="modal-toggle"
+        checked={showModal}
+        readOnly
+      />
       <div className="modal">
-        <div className="modal-box">
+        <div className="modal-box space-y-4">
           <h3 className="font-bold text-lg">Kategori</h3>
-          <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full " value={KategoriInput} onChange={(e) => setKategoriInput(e.target.value)} />
+          <div className="text-xs text-red-500">{msg}</div>
+          <input
+            type="text"
+            placeholder="Type here"
+            className="input input-bordered input-info w-full "
+            value={KategoriInput}
+            onChange={(e) => setKategoriInput(e.target.value)}
+          />
           <div className="modal-action">
-            <button className="btn btn-primary" type="submit" onClick={(e) => handleSubmit(e)}>Tambah Kategori</button>
-            <button className="btn" onClick={()=>setShowModal(false)}>Close</button>
+            <button
+              className="btn btn-info text-base-100"
+              type="submit"
+              onClick={(e) => handleSubmit(e)}
+            >
+              Tambah Kategori
+            </button>
           </div>
         </div>
+        <label className="modal-backdrop" htmlFor="my_modal_7" onClick={handleClick}>
+          Close
+        </label>
       </div>
- 
     </>
-  )
+  );
 }
-AddKategori.propTypes = {
-    onKategoriAdded: PropTypes.func.isRequired
-  };
