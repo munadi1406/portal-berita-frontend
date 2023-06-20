@@ -26,8 +26,8 @@ export default function Card({ title, prolog, kategori, image, createdAt }) {
   }, []);
 
   return (
-    <div className="relative  overflow-clip">
-      <div className="card shadow-md overflow-clip text-white/75 w-full h-full relative">
+    <div className="relative  overflow-hidden">
+      <div className="card shadow-md overflow-hidden text-white/75 w-full h-full relative">
           <LazyLoadImage
             src={image}
             alt={title}
