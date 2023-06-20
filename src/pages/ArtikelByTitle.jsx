@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { artikelByTitle, getArtikel } from "../api/artikel";
+import { artikelByTitle } from "../api/artikel";
 import { PropTypes } from "prop-types";
 import { useParams } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
@@ -9,11 +9,9 @@ import pisahKategori from "../utils/pisahKategori";
 import randomBg from "../utils/randomBg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import addView from "../components/addView";
 
 import { Parser } from "html-to-react";
 import { useLocation } from "react-router-dom";
-import { useCallback } from "react";
 
 const ArtikelByTitle = () => {
   const { title } = useParams();
@@ -21,23 +19,20 @@ const ArtikelByTitle = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
-  const getArtikelData = useCallback(async () => {
+  const getArtikelData = async () => {
     setLoading(true);
     try {
       const data = await artikelByTitle(title);
-      const artikelId = data.data.data[0].artikelId
-      addView(artikelId)
       setDataArtikel(data.data.data);
       setLoading(false);
     } catch (error) {
       /* empty */
     }
-  },[location.pathname]);
+  };
 
   useEffect(() => {
-    getArtikelData()
-    
-  }, [getArtikelData]);
+    getArtikelData();
+  }, [location.pathname]);
 
   useEffect(() => {
     const componentContainer = document.getElementById("isi");

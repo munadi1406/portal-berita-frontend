@@ -6,7 +6,6 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { SkeletonLoading } from "../utils/imports";
 import Error from "../components/Error";
 import SkeletonCarousel from "../components/SkeletonCarousel";
-import { useCallback } from "react";
 
 const Card = lazy(() => import("../components/card"));
 const Carousel = lazy(() => import("../components/Carousel"));
@@ -19,7 +18,7 @@ const Home = () => {
   const [error, setError] = useState();
   const [msg, setMsg] = useState();
 
-  const getArtikelData = useCallback(async () => {
+  const getArtikelData = async () => {
     try {
       const datas = await getArtikel(page);
       const newData = datas.data.data;
@@ -29,15 +28,15 @@ const Home = () => {
     } catch (error) {
       // console.log(error);
     }
-  }, [page]);
+  };
 
   useEffect(() => {
     getArtikelData();
-  }, [getArtikelData]);
+  }, [page]);
 
   const [dataCarousel, setDataCarousel] = useState([]);
 
-  const getDataCarousel = useCallback(async () => {
+  const getDataCarousel = async () => {
     try {
       const data = await getArtikel(1);
       setDataCarousel(data.data.data);
@@ -47,8 +46,7 @@ const Home = () => {
         setMsg(error.response.data);
       }
     }
-  }, []);
-  
+  };
   useEffect(() => {
     getDataCarousel();
   }, []);
