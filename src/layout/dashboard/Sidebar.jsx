@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import jwtDecodeId from "../../utils/jwtDecodeId";
 import { useState } from "react";
 import { useEffect } from "react";
+import PropTypes from 'prop-types'
 
 export default function Sidebar({close}) {
 
@@ -35,7 +36,10 @@ export default function Sidebar({close}) {
           <Link to={"./statistik"} className="w-full block">Statistik</Link>
         </li>
         <li className={`p-2 rounded-md hover:bg-slate-600 ${role !== "admin" ? 'hidden' : ''}`} onClick={close}>
-          <Link className="w-full block">Users</Link>
+          <Link to={'./Users'}className="w-full block">Users</Link>
+        </li>
+        <li className={`p-2 rounded-md hover:bg-slate-600 ${role !== "admin" ? 'hidden' : ''}`} onClick={close}>
+          <Link to={'./Log'} className="w-full block">Log</Link>
         </li>
         <li className={`p-2 rounded-md hover:bg-slate-600 ${role !== "admin" ? 'hidden' : ''}`} onClick={close}>
           <Link to={"./kategori"} className="w-full block">Kategori</Link>
@@ -47,4 +51,7 @@ export default function Sidebar({close}) {
 
     </div>
   );
+}
+Sidebar.propTypes = {
+  close:PropTypes.func
 }

@@ -12,6 +12,8 @@ import {
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useRef } from "react";
+import Users from "../pages/Dashboard/Users";
+import Log from "../pages/Dashboard/Log";
 
 export default function Dashboard() {
   const redirect = useNavigate();
@@ -64,6 +66,8 @@ export default function Dashboard() {
         <Route path="/statistik" element={<Statistik navbarTitle={handleNavbarTitle}/>} />
         <Route path="/pengaturan" element={<Pengaturan navbarTitle={handleNavbarTitle}/>} />
         <Route path="/Kategori" element={<KategoriData navbarTitle={handleNavbarTitle}/>} />
+        <Route path="/users" element={<Users navbarTitle={handleNavbarTitle}/>} />
+        <Route path="/log" element={<Log navbarTitle={handleNavbarTitle}/>} />
       </Routes>
     </div>
     <div className="bg-slate-600 px-4 py-2">
