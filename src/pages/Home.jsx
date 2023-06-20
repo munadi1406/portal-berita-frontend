@@ -9,7 +9,7 @@ import SkeletonCarousel from "../components/SkeletonCarousel";
 import { useCallback } from "react";
 
 const Card = lazy(() => import("../components/card"));
-const  Carousel = lazy(()=>import ("../components/Carousel"));
+const Carousel = lazy(() => import("../components/Carousel"));
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ const Home = () => {
   const [error, setError] = useState();
   const [msg, setMsg] = useState();
 
-  const getArtikelData =  useCallback( async () => {
+  const getArtikelData = useCallback(async () => {
     try {
       const datas = await getArtikel(page);
       const newData = datas.data.data;
@@ -29,9 +29,7 @@ const Home = () => {
     } catch (error) {
       // console.log(error);
     }
-  },[page]);
-
-  
+  }, [page]);
 
   useEffect(() => {
     getArtikelData();
@@ -39,7 +37,7 @@ const Home = () => {
 
   const [dataCarousel, setDataCarousel] = useState([]);
 
-  const getDataCarousel = async () => {
+  const getDataCarousel = useCallback(async () => {
     try {
       const data = await getArtikel(1);
       setDataCarousel(data.data.data);
@@ -49,7 +47,8 @@ const Home = () => {
         setMsg(error.response.data);
       }
     }
-  };
+  }, []);
+  
   useEffect(() => {
     getDataCarousel();
   }, []);
@@ -60,9 +59,9 @@ const Home = () => {
         <Helmet>
           <title>Cosmic | Ayo Baca Lurr</title>
         </Helmet>
-          <Suspense fallback={<SkeletonCarousel/>}>
-            <Carousel data={dataCarousel} />
-          </Suspense>
+        <Suspense fallback={<SkeletonCarousel />}>
+          <Carousel data={dataCarousel} />
+        </Suspense>
         <div className="p-2">
           {loading ? (
             error ? (
@@ -85,8 +84,9 @@ const Home = () => {
                 ))}
               </Suspense>
               <button
-                className={`btn btn-secondary col-span-full w-full  ${page >= totalPage ? "hidden" : ""
-                  }`}
+                className={`btn btn-secondary col-span-full w-full  ${
+                  page >= totalPage ? "hidden" : ""
+                }`}
                 onClick={() => setPage(page + 1)}
               >
                 Load More
