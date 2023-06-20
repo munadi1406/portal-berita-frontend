@@ -51,7 +51,6 @@ const Home = () => {
     }
   };
   useEffect(() => {
-    getArtikelData();
     getDataCarousel();
   }, []);
 
