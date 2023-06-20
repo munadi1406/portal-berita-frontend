@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import formatDateTime from "./../utils/formatDateTime";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import randomBg from "../utils/randomBg";
 import pisahKategori from "../utils/pisahKategori";
 
@@ -21,15 +21,13 @@ export default function Card({ title, prolog, kategori, image, createdAt }) {
 
   const [kategoriPart, setKategoriPart] = useState([]);
 
-  useEffect(() => {    
+  useEffect(() => {
     setKategoriPart(pisahKategori(kategori));
   }, []);
 
-  
-
   return (
     <div className="relative">
-      <div className="card shadow-md overflow-clip text-white/75 w-full h-full">
+      <div className="card shadow-md overflow-clip text-white/75 w-full h-full relative">
           <LazyLoadImage
             src={image}
             alt={title}
@@ -70,6 +68,8 @@ export default function Card({ title, prolog, kategori, image, createdAt }) {
         </div>
       </div>
     </div>
+
+   
   );
 }
 
