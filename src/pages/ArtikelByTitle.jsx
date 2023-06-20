@@ -9,6 +9,7 @@ import pisahKategori from "../utils/pisahKategori";
 import randomBg from "../utils/randomBg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import addView from '../components/addView'
 
 import { Parser } from "html-to-react";
 import { useLocation } from "react-router-dom";
@@ -23,8 +24,10 @@ const ArtikelByTitle = () => {
     setLoading(true);
     try {
       const data = await artikelByTitle(title);
+      const artikelId = data.data.data[0].artikelId
       setDataArtikel(data.data.data);
       setLoading(false);
+      await addView(artikelId)
     } catch (error) {
       /* empty */
     }

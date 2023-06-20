@@ -8,8 +8,8 @@ export const getViewGroupById = async (id) => {
 };
 
 
-export const getViewByMonth = async () => {
-  const data = await axios.get(`${endpoint}/viewbymonth`);
+export const getViewByMonth = async (id) => {
+  const data = await axios.get(`${endpoint}/viewByMonth/${id}`);
   return data;
 };
 

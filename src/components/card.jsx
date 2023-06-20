@@ -29,7 +29,7 @@ export default function Card({ title, prolog, kategori, image, createdAt }) {
 
   return (
     <div className="relative">
-      <div className="card shadow-md overflow-clip text-white/75">
+      <div className="card shadow-md overflow-clip text-white/75 w-full h-full">
           <LazyLoadImage
             src={image}
             alt={title}
@@ -37,8 +37,7 @@ export default function Card({ title, prolog, kategori, image, createdAt }) {
             effect="blur"
           />
           {/* gradiend */}
-          <div className="absolute w-full h-full top-0 left-0 bg-black/70 z-10">
-
+          <div className="absolute w-full h-full top-0 left-0 bg-black/50 z-10">
           </div>
         <div className="card-body grid grid-cols-1 relative z-10">
           <h2 className="card-title " title={title}>
