@@ -11,6 +11,9 @@ import ChartByMonth from "../../components/ChartByMonth";
 export default function Statistik({ navbarTitle }) {
   const [dataById, setDataById] = useState([]);
   const [viewByMonth, setViewByMonth] = useState([]);
+  const [totalView,setTotalView] = useState([])
+  const [monthName,setMonthName] = useState([])
+  
 
   const getStatistikGroupId = async () => {
     try {
@@ -27,6 +30,7 @@ export default function Statistik({ navbarTitle }) {
     try {
       const { idUsers } = jwtDecodeId();
       const { data } = await getViewByMonth(idUsers);
+      console.log(data)
       setViewByMonth(data.data)
     } catch (error) { /* empty */ }
   };
@@ -38,12 +42,35 @@ export default function Statistik({ navbarTitle }) {
   }, []);
 
 
+const bulanNames = [
+  'Januari',
+  'Februari',
+  'Maret',
+  'April',
+  'Mei',
+  'Juni',
+  'Juli',
+  'Agustus',
+  'September',
+  'Oktober',
+  'November',
+  'Desember',
+];
+
+  useEffect(()=>{
+    viewByMonth.forEach((e)=>{
+      setTotalView(totalView.concat(e.jumlah_view))
+      setMonthName(monthName.concat(bulanNames[e.bulan -1]))
+    })
+  },[viewByMonth])
+
+
   const data = {
-    labels: ["januari"],
+    labels: [monthName],
     datasets: [
       {
-        label: 'Sales',
-        data: [5],
+        label: '',
+        data: [totalView],
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
