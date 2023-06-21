@@ -6,7 +6,7 @@ import TextComponent from './TextComponent';
 import FunctionContext from './FunctionContext';
 
 
-
+ 
 const TableArtikell = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const {deleteArtikelPost,dataArtikel} = useContext(FunctionContext)

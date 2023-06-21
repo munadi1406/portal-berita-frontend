@@ -10,7 +10,7 @@ import ChartByMonth from "../../components/ChartByMonth";
 
 export default function Statistik({ navbarTitle }) {
   const [dataById, setDataById] = useState([]);
-  // const [dataViewByMonth,setDataViewByMonth] = useState([])
+  const [viewByMonth, setViewByMonth] = useState([]);
 
   const getStatistikGroupId = async () => {
     try {
@@ -23,19 +23,27 @@ export default function Statistik({ navbarTitle }) {
       console.log(error);
     }
   };
+  const viewsByMonth = async () => {
+    try {
+      const { idUsers } = jwtDecodeId();
+      const { data } = await getViewByMonth(idUsers);
+      setViewByMonth(data.data)
+    } catch (error) { /* empty */ }
+  };
 
   useEffect(() => {
     navbarTitle("Statistik");
     getStatistikGroupId();
+    viewsByMonth()
   }, []);
 
 
   const data = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    labels: ["januari"],
     datasets: [
       {
         label: 'Sales',
-        data: [12, 19, 3, 5, 2, 3],
+        data: [5],
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
@@ -46,7 +54,7 @@ export default function Statistik({ navbarTitle }) {
   const options = {
     scales: {
       y: {
-        beginAtZero: true,
+        beginAtZero: false,
       },
     },
   };

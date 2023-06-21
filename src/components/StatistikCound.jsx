@@ -1,4 +1,9 @@
+import FunctionContext from "./FunctionContext";
+import { useContext } from "react";
+
+
 export default function StatistikCound() {
+  const {totalPostView} = useContext(FunctionContext)
   return (
     <>
       <div className="stats shadow flex flex-wrap">
@@ -18,9 +23,8 @@ export default function StatistikCound() {
               ></path>
             </svg>
           </div>
-          <div className="stat-title">Downloads</div>
-          <div className="stat-value">31K</div>
-          <div className="stat-desc">Jan 1st - Feb 1st</div>
+          <div className="stat-title">Total Post</div>
+          <div className="stat-value">{totalPostView.totalPost}</div>
         </div>
 
         <div className="stat w-full sm:w-auto md:w-1/2 lg:w-1/3">
@@ -39,9 +43,8 @@ export default function StatistikCound() {
               ></path>
             </svg>
           </div>
-          <div className="stat-title">New Users</div>
-          <div className="stat-value">4,200</div>
-          <div className="stat-desc">↗︎ 400 (22%)</div>
+          <div className="stat-title">Total View</div>
+          <div className="stat-value">{totalPostView.totalView}</div>
         </div>
 
         <div className="stat w-full sm:w-auto md:w-1/2 lg:w-1/3">

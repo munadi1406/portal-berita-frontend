@@ -52,7 +52,7 @@ export default function Dashboard() {
   <div
     className={`${
       sidebar ? "left-0 z-20" : "-left-full"
-    } h-full lg:left-0 lg:relative absolute -left-full transition-all ease-in-out duration-300 `}
+    } h-full lg:left-0 lg:relative absolute -left-full transition-all ease-in-out duration-300 z-10`}
     ref={ref} >
     <Sidebar close={closeSidebar}/>
   </div>

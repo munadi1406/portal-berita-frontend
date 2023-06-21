@@ -40,7 +40,7 @@ export default function AddArtikel() {
       setShowModal(false);
     } catch (error) {
       setMsg(error.response.data.msg);
-      
+      onAddedArtikel(error.response.data.message);
     }finally{
         setInsertLoading(false)
     }

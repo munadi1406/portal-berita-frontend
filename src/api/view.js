@@ -22,3 +22,9 @@ export const postView = async (artikelId,date) => {
   });
   return data;
 };
+
+
+export const totalPostAndView = async (id) => {
+  const data = await axios.get(`${endpoint}/totalpostandview/${id}`);
+  return data;
+};
