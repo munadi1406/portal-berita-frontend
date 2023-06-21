@@ -12,12 +12,10 @@ Chart.register(LineController, LinearScale, PointElement, LineElement,CategorySc
 const ChartByMonth = () => {
   const {data,options} = useContext(FunctionContext)
 
-  // Data dan opsi chart
   
-
   return (
     <div>
-      <h2>Line Chart</h2>
+      <h2 className='text-3xl'>Statistik Per Bulan</h2>
       <Line data={data} options={options} />
     </div>
   );
