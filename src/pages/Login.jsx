@@ -1,9 +1,10 @@
 import { login } from "../api/login";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import AuthCheck from "../utils/AuthCheck";
 import HelmetTitle from "../utils/HelmetTitle";
+import { useEffect } from "react";
+import loginCheck from "../utils/loginCheck";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -27,14 +28,13 @@ export default function Login() {
       setLoading(false)
     }
   };
-  useEffect(() => {
-    const isAuthenticated = AuthCheck();
-    if (!isAuthenticated) {
-      redirect("/Login");
-    } else {
-      redirect("/dashboard");
-    }
-  }, []);
+
+  useEffect(()=>{
+    const login = loginCheck()
+    if(login) return redirect('/dashboard')
+  },[])
+
+
 
   return (
     <>

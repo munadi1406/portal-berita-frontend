@@ -11,8 +11,9 @@ import Navbar from "../layout/dashboard/Navbar";
 import Sidebar from "../layout/dashboard/Sidebar";
 import Statistik from "../pages/Dashboard/Statistik";
 import SkeletonLoading from "../components/SkeletonLoading";
-import AuthCheck from "./AuthCheck";
 
+
+import MiddlewareAuthCheck from "../components/MiddlewareAuthCheck";
 import ArtikelByTitle from "../pages/ArtikelByTitle";
 import Pengaturan from "../pages/Dashboard/Pengaturan";
 
@@ -30,9 +31,9 @@ import CardDashBoard from "../components/CardDashBoard";
 
 
 export {
+  MiddlewareAuthCheck,
   CardDashBoard,
   KategoriData,
-  AuthCheck,
   CollapseLoading,
   SkeletonLoading,
   Carousel,

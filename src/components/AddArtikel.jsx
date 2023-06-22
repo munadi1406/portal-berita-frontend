@@ -17,7 +17,7 @@ export default function AddArtikel() {
   const [msg, setMsg] = useState();
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef();
-  const { idUsers } = jwtDecodeId();
+  
   const { onAddedArtikel } = useContext(FunctionContext);
   const [insertLoading,setInsertLoading] = useState(false);
   
@@ -27,6 +27,7 @@ export default function AddArtikel() {
     setInsertLoading(true)
     const formatKategori = kategori.join(",");
     try {
+      const { idUsers } = jwtDecodeId();
       const addArtikel = await insertArticle(
         idUsers,
         title,

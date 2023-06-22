@@ -5,11 +5,10 @@ import Cookies from "js-cookie";
 
 export default function Navbar({ onClickSidebar, title }) {
   const redirect = useNavigate();
-  const handleLogout = async () => {
-     Cookies.remove("rt");
+  const handleLogout =  () => {
+    Cookies.remove("rt");
      Cookies.remove("at");
     redirect("/Login");
-    return;
   };
   return (
     <div className="flex justify-between items-center w-full">
