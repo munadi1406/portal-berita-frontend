@@ -7,7 +7,7 @@ import { deleteArtikel, getArtikelById } from "../../api/artikel";
 import HelmetTitle from "../../utils/HelmetTitle";
 import Modal from "../../components/Modal";
 import FunctionContext from "../../components/FunctionContext";
-import {  totalPostAndView } from "../../api/view";
+import { totalPostAndView } from "../../api/view";
 
 const AddArtikel = lazy(() => import("../../components/AddArtikel"));
 const TableArtikell = lazy(() => import("../../components/TableArtikell"));
@@ -17,13 +17,17 @@ const Index = ({ navbarTitle }) => {
   const [modal, setModal] = useState();
   const [msg, setMsg] = useState();
   const [totalPostView, setTotalPostView] = useState([]);
-
+  const [loading, setLoading] = useState(false);
 
   const getArtikelPostById = async () => {
+    setLoading(true);
     try {
       const { idUsers } = jwtDecodeId();
-      const data = await getArtikelById(idUsers);
-      setDataArtikel(data.data.data);
+      const datas = await getArtikelById(idUsers);
+      const { data } = await totalPostAndView(idUsers);
+      setTotalPostView(data.data);
+      setDataArtikel(datas.data.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -41,18 +45,6 @@ const Index = ({ navbarTitle }) => {
     }
   };
 
-  const getTotalPostAndView = async () => {
-    try {
-      const { idUsers } = jwtDecodeId();
-      const { data } = await totalPostAndView(idUsers);
-      setTotalPostView(data.data);
-    } catch (error) {
-      /* empty */
-    }
-  };
-
-  
-
   const onAddedArtikel = async (msg) => {
     setModal(true);
     setMsg(msg);
@@ -62,7 +54,6 @@ const Index = ({ navbarTitle }) => {
   useEffect(() => {
     navbarTitle("Artikel");
     getArtikelPostById();
-    getTotalPostAndView();
   }, []);
 
   const closeModal = () => {
@@ -82,11 +73,17 @@ const Index = ({ navbarTitle }) => {
           totalPostView,
         }}
       >
-        <StatistikCound />
-        <Suspense fallback={<Loader />}>
-          <AddArtikel />
-          <TableArtikell />
-        </Suspense>
+        {loading ? (
+          <Loader/>
+        ) : (
+          <>
+            <StatistikCound />
+            <Suspense fallback={<Loader />}>
+              <AddArtikel />
+              <TableArtikell />
+            </Suspense>
+          </>
+        )}
       </FunctionContext.Provider>
     </div>
   );

@@ -6,15 +6,10 @@ import { useContext } from 'react';
 Chart.register(LineController, LinearScale, PointElement, LineElement,CategoryScale);
 
 
-
-
-
 const ChartByMonth = () => {
   const {data,options} = useContext(FunctionContext)
-
-  
   return (
-    <div>
+    <div className='max-w-full'>
       <h2 className='text-3xl'>Statistik Per Bulan</h2>
       <Line data={data} options={options} />
     </div>

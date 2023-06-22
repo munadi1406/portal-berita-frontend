@@ -8,11 +8,13 @@ import {
   KategoriData,
 } from "../utils/imports";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useRef } from "react";
 import Users from "../pages/Dashboard/Users";
 import Log from "../pages/Dashboard/Log";
 import PrivateRoute from "../components/PrivateRoute";
+import { useLocation } from "react-router-dom";
+import { addLog } from "../api/log";
 
 export default function Dashboard() {
   const [sidebar, setSidebar] = useState(false);
@@ -34,6 +36,15 @@ export default function Dashboard() {
       setSidebar(false);
     }
   };
+
+  const location = useLocation()
+
+  useEffect(()=>{
+    const logAdd = async ()=>{
+      await addLog(location.pathname)
+    }
+    return ()=> logAdd()
+  },[location])
 
   return (
     <>

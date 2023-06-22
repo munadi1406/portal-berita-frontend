@@ -13,7 +13,8 @@ export default function Login() {
   const redirect = useNavigate();
   const [loading, setLoading] = useState(false)
 
-  const auth = async () => {
+  const auth = async (e) => {
+    e.preventDefault()
     try {
       setLoading(true)
       const data = await login(email, password);
@@ -48,7 +49,7 @@ export default function Login() {
             </q>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
+            <form className="card-body" onSubmit={auth}>
               <h1 className="text-center text-xs text-red-500 col-span-4">{msg}</h1>
               <div className="form-control">
                 <label className="label">
@@ -81,11 +82,11 @@ export default function Login() {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-info text-base-100" onClick={() => auth()}>
+                <button className="btn btn-info text-base-100" type="submit">
                   {loading ? 'Loading...' : 'Login'}
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

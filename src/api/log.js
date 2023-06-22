@@ -3,16 +3,24 @@ import axios from "axios";
 const endpoint = "https://portal-berita-backend.fathullahmunadi.repl.co";
 
 export const getLog = async () => {
-  const auth = await axios.get(`${endpoint}/log`);
-  return auth;
+  const data = await axios.get(`${endpoint}/log`);
+  return data;
 };
 
-
-export const addLog = async (ipAddres,browser,currentPage) => {
-  const auth = await axios.post(`${endpoint}/log`,{
-    ipAddres,
+export const addLog = async (currentPage) => {
+  const res = await axios.get("https://ipapi.co/json/");
+  const ip = res.data.ip;
+  const city = res.data.city;
+  const region = res.data.region;
+  const country = res.data.country_name;
+  const browser = window.navigator.userAgent;
+  const data = await axios.post(`${endpoint}/log`, {
+    ipAddress: ip,
     browser,
-    currentPage
+    currentPage,
+    city,
+    region,
+    country,
   });
-  return auth;
+  return data;
 };

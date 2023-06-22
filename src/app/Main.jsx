@@ -1,11 +1,21 @@
+import { useEffect } from 'react'
 import {HeaderMain,SidebarMain,FooterMain, Home, Kategori, ArtikelByTitle} from '../utils/imports'
-import { Routes ,Route} from 'react-router-dom'
+import { Routes ,Route,useLocation} from 'react-router-dom'
+import { addLog } from '../api/log'
 
 
 
 
 export default function Main() {
-  
+  const location = useLocation()
+
+  useEffect(()=>{
+    const logAdd = async ()=>{
+      await addLog(location.pathname)
+    }
+    return ()=> logAdd()
+  },[location])
+
 
   return (
     <>
