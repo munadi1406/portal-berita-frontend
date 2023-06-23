@@ -127,7 +127,7 @@ export default function AddArtikel() {
                 <input
                   type="text"
                   placeholder="Type here"
-                  className="input input-bordered input-info w-full col-span-4"
+                  className="input input-bordered input-info w-full col-span-4 bg-base-200"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
@@ -136,7 +136,7 @@ export default function AddArtikel() {
                 <textarea
                   type="text"
                   placeholder="Type here"
-                  className="textarea textarea-info w-full col-span-4"
+                  className="textarea textarea-info w-full col-span-4 bg-base-200"
                   value={prolog}
                   onChange={(e) => setProlog(e.target.value)}
                   required
@@ -154,7 +154,7 @@ export default function AddArtikel() {
                         <label htmlFor={e.kategori}>{e.kategori}</label>
                         <input
                           type="checkbox"
-                          className="default:ring-2 ..."
+                          className=""
                           onChange={handleChange}
                           value={e.kategori}
                           name={e.kategori}
@@ -167,7 +167,7 @@ export default function AddArtikel() {
                 <div className="text-lg">Gambar</div>
                 <input
                   type="file"
-                  className="file-input file-input-bordered file-input-info col-span-4"
+                  className="file-input file-input-bordered file-input-info col-span-4 bg-base-200"
                   onChange={(e) => setImage(e.target.files[0])}
                   required
                   accept="image/png, image/jpeg, image/webp"

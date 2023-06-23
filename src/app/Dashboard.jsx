@@ -58,10 +58,10 @@ export default function Dashboard() {
           <Sidebar close={closeSidebar} />
         </div>
         <div className="flex flex-col w-full" onClick={handleOutsideClick}>
-          <div className="flex justify-between items-center px-4 py-2 bg-blue-500 transition-all ease">
+          <div className="flex justify-between items-center px-4 py-2 bg-accent transition-all ease">
             <Navbar onClickSidebar={handleClickSidebar} title={navbarTitle} />
           </div>
-          <div className="flex-grow p-2 overflow-y-auto bg-base-100 ">
+          <div className="flex-grow p-2 overflow-y-auto bg-base-200 ">
             <Routes>
               <Route
                 path="/"
@@ -89,7 +89,7 @@ export default function Dashboard() {
               />
             </Routes>
           </div>
-          <div className="bg-slate-600 px-4 py-2">
+          <div className="bg-accent px-4 py-2">
             <FooterDashboard />
           </div>
         </div>

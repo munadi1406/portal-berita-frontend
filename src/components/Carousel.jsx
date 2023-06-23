@@ -64,7 +64,7 @@ const Carousel = memo(function Carousel({ data }) {
               </div>
               <Link
                 to={`/article/${e.title.toLowerCase().replace(/\s/g, "-")}`}
-                className="btn btn-accent"
+                className="btn btn-accent text-base-200"
               >
                 Baca Sekarang
               </Link>
@@ -72,7 +72,6 @@ const Carousel = memo(function Carousel({ data }) {
             <LazyLoadImage
               src={e.image}
               alt={e.title}
-              className="bg-cover"
               effect="black-and-white"
             />
             {/* bg grident  */}

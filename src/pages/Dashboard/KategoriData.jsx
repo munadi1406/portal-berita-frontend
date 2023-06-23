@@ -76,9 +76,9 @@ export default function KategoriData({ navbarTitle }) {
                       <td>{e.kategori}</td>
                       <td>
                         <div className="flex gap-2">
-                          <button className="btn btn-success">Edit</button>
+                          <button className="btn btn-info text-base-200">Edit</button>
                           <button
-                            className="btn btn-warning"
+                            className="btn btn-primary"
                             onClick={() => handleHapus(e.id)}
                           >
                             Hapus

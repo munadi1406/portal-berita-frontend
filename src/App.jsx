@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,HashRouter } from "react-router-dom";
 import { Dashboard, Login, Main, MiddlewareAuthCheck } from "./utils/imports";
-import { HashRouter } from "react-router-dom";
 import Register from "./pages/Register";
 
 
@@ -15,7 +14,7 @@ function App() {
   
 
   return (
-    <div className="max-w-screen min-w-full">
+    <div className="max-w-screen min-w-full bg-base-200">
       <HashRouter>
         <Routes>
           <Route path="/*" element={<Main />} />

@@ -3,7 +3,7 @@
 export default function FooterDashboard() {
   return (
     <div className="text-right text-white">
-  footer dashboard      
+  Cosmic 2023     
     </div>
   )
 }

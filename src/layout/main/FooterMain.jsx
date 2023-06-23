@@ -1,7 +1,7 @@
 export default function FooterMain() {
   return (
     <div className="">
-      <footer className="footer p-10 bg-info/40 text-white">
+      <footer className="footer p-10 bg-info text-white">
         <div>
           <svg
             width="50"

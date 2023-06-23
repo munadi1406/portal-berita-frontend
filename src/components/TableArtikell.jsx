@@ -79,7 +79,7 @@ const TableArtikell = () => {
                 {pisahKategori(item.kategori).map((e, i) => (
                   <div
                     key={i}
-                    className={`badge text-base-100 font-semibold ${randomBg()}`}
+                    className={`badge text-base-200 font-semibold ${randomBg()}`}
                   >
                     {e}
                   </div>
@@ -92,11 +92,11 @@ const TableArtikell = () => {
               </td>
               <td className="px-4 py-2">
                 <div className="flex flex-wrap w-max space-y-1">
-                  <button className="btn btn-info w-full text-base-100">
+                  <button className="btn btn-info w-full text-base-200">
                     Edit
                   </button>
                   <button
-                    className="btn btn-warning w-full text-base-100"
+                    className="btn btn-primary w-full text-base-200"
                     onClick={(e) => deleteArtikelPost(item.artikelId,e)}
                   >
                     Hapus

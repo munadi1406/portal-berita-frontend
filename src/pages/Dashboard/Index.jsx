@@ -25,7 +25,6 @@ const Index = ({ navbarTitle }) => {
       const { data } = await totalPostAndView(idUsers);
       setTotalPostView(data.data);
       setDataArtikel(datas.data.data);
-      console.log(datas)
     } catch (error) {
       console.log(error);
     }
