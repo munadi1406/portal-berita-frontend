@@ -2,12 +2,14 @@ import { useEffect } from 'react'
 import {HeaderMain,SidebarMain,FooterMain, Home, Kategori, ArtikelByTitle} from '../utils/imports'
 import { Routes ,Route,useLocation} from 'react-router-dom'
 import { addLog } from '../api/log'
+import { useState } from 'react'
 
 
 
 
 export default function Main() {
   const location = useLocation()
+  const [isScrolled,setIsScrolled] = useState()
 
   useEffect(()=>{
     const logAdd = async ()=>{
@@ -16,10 +18,24 @@ export default function Main() {
     return ()=> logAdd()
   },[location])
 
+  useEffect(()=>{
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      if (scrollTop > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  },[])
 
   return (
     <>
-          <HeaderMain />
+          <HeaderMain isScrolled={isScrolled}/>
           <div className="flex flex-wrap pl-6 pr-6 max-w-6xl m-auto">
             <main className="min-h-screen lg:w-3/4 sm:w-full relative z-0 w-full">
               <Routes >

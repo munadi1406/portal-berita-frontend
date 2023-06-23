@@ -82,7 +82,7 @@ const Home = () => {
                 ))}
               </Suspense>
               <button
-                className={`btn btn-secondary col-span-full w-full  ${
+                className={`btn btn-info text-base-100 col-span-full w-full  ${
                   page >= totalPage ? "hidden" : ""
                 }`}
                 onClick={() => setPage(page + 1)}

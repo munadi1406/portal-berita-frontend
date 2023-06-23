@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getKategori } from "../../api/kategori";
+import PropTypes from 'prop-types'
 
-const HeaderMain = () => {
+const HeaderMain = ({isScrolled}) => {
   const [darkMode, setDarkMode] = useState(false);
   const [kategoriData, setKategoriData] = useState([]);
 
@@ -31,7 +32,7 @@ const HeaderMain = () => {
   }, [darkMode]);
 
   return (
-    <div className="drawer relative z-20 ">
+    <div className={`drawer z-40 sticky top-0 ${isScrolled ? 'bg-base-100/40 filter backdrop-blur-lg':''}`}>
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
@@ -96,7 +97,7 @@ const HeaderMain = () => {
             <Link to={'./'}>Home</Link>
           </li>
           <li>
-            <details open>
+            <details>
               <summary>Kategori</summary>
               <ul>
                 {kategoriData.map((e) => (
@@ -113,4 +114,7 @@ const HeaderMain = () => {
   );
 };
 
+HeaderMain.propTypes ={
+  isScrolled:PropTypes.bool
+}
 export default HeaderMain;

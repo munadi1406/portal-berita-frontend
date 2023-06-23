@@ -28,6 +28,7 @@ export default {
           success: "#1c824c",
           warning: "#d07c16",
           error: "#ee5a58",
+          "base-200":"white"
         },
       },
     ],

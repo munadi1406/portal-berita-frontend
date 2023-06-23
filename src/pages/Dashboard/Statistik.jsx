@@ -75,7 +75,7 @@ export default function Statistik({ navbarTitle }) {
     setTotalView(totalViews.reverse());
     setMonthName(bulan.reverse());
     setViewByWeek(minggu.reverse());
-    setTotalViewWeek(viewWeek);
+    setTotalViewWeek(viewWeek.reverse());
   }, [viewByMonth]);
 
   const dataByMonth = {
