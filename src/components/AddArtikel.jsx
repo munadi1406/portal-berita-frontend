@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { insertArticle } from "../api/artikel";
@@ -16,7 +16,6 @@ export default function AddArtikel() {
   const [loading, setLoading] = useState(true);
   const [msg, setMsg] = useState();
   const [showModal, setShowModal] = useState(false);
-  const modalRef = useRef();
   
   const { onAddedArtikel } = useContext(FunctionContext);
   const [insertLoading,setInsertLoading] = useState(false);
@@ -31,17 +30,15 @@ export default function AddArtikel() {
       const addArtikel = await insertArticle(
         idUsers,
         title,
-        content,
+        content, 
         prolog,
         formatKategori,
         image
       );
-      console.log(addArtikel);
       onAddedArtikel(addArtikel.data.msg);
       setShowModal(false);
     } catch (error) {
       setMsg(error.response.data.msg);
-      onAddedArtikel(error.response.data.message);
     }finally{
         setInsertLoading(false)
     }
@@ -66,11 +63,9 @@ export default function AddArtikel() {
     getKategoriData();
   }, []);
 
-  const handleOutsideClick = (e) => {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      setShowModal(false);
-    }
-  };
+ const handleClose = ()=>{
+  setShowModal(false)
+ }
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -107,13 +102,12 @@ export default function AddArtikel() {
       {showModal && (
         <div
           className="bg-black/60 w-full absolute top-0 left-0 h-full z-20 flex justify-center p-2"
-          onClick={handleOutsideClick}
         >
           <form
             encType="multipart/form-data"
             className="bg-white w-3/4 rounded-md p-4 overflow-y-auto flex justify-center "
             onSubmit={(e) => insertArtikel(e)}
-            ref={modalRef}
+            
           >
             <div className="h-max w-full">
               <div
@@ -173,7 +167,7 @@ export default function AddArtikel() {
                 <div className="text-lg">Gambar</div>
                 <input
                   type="file"
-                  className="file-input file-input-bordered file-input-info  col-span-4"
+                  className="file-input file-input-bordered file-input-info col-span-4"
                   onChange={(e) => setImage(e.target.files[0])}
                   required
                   accept="image/png, image/jpeg, image/webp"
@@ -210,6 +204,11 @@ export default function AddArtikel() {
                 type="submit"
               >
                {insertLoading ? "Loading...": "Posting"}
+              </button>
+              <button onClick={handleClose}
+                className="btn btn-accent w-full mt-2 text-white"
+              >
+              Close
               </button>
             </div>
           </form>

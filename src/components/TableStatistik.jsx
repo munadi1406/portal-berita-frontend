@@ -1,10 +1,9 @@
-import { useContext } from "react"
-import FunctionContext from './FunctionContext'
+import PropTypes from 'prop-types'
 import { useState } from "react";
 
-const TableStatistik = () => {
+const TableStatistik = ({dataById}) => {
 
-    const {dataById} = useContext(FunctionContext)
+    
     const [searchTerm, setSearchTerm] = useState('');
 
 
@@ -44,6 +43,10 @@ const TableStatistik = () => {
     </table>
 </div>
   )
+}
+
+TableStatistik.propTypes = {
+    dataById:PropTypes.array
 }
 
 export default TableStatistik

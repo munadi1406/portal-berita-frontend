@@ -1,46 +1,48 @@
-import PropTypes from 'prop-types'
-import { useEffect } from 'react'
-import {getLog} from '../../api/log'
-import { useState } from 'react'
-import FunctionContext from '../../components/FunctionContext'
-import TableLog from '../../components/TableLog'
+import PropTypes from "prop-types";
+import { useEffect,useState,lazy,Suspense } from "react";
+import { getLog } from "../../api/log";
+import FunctionContext from "../../components/FunctionContext";
+import HelmetTitle from "../../utils/HelmetTitle";
 import Loader from '../../utils/loader'
-import HelmetTitle from '../../utils/HelmetTitle'
 
-const Log = ({navbarTitle}) => {
+const TableLog = lazy(()=>import('../../components/TableLog'));
 
-  const [loading,setLoading] = useState(false)
-  const [dataLog,setDataLog] = useState([])
+const Log = ({ navbarTitle }) => {
+  const [dataLog, setDataLog] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPage,setTotalPage] = useState()
 
-  const getLogData = async ()=>{
-    setLoading(true);
+  const getLogData = async (page) => {
     try {
-      const {data} = await getLog()
-      setDataLog(data.data)
-      setLoading(false)
-    } catch (error) { /* empty */ }
-  }
+      const { data } = await getLog(page);
+      setDataLog(dataLog.concat(data.data))
+      setTotalPage(data.totalPages)
+    } catch (error) {
+      /* empty */
+    }
+  };
 
-    useEffect(()=>{
-        navbarTitle('Log')
-        getLogData()
-    },[])
+  useEffect(() => {
+    navbarTitle("Log");
+    getLogData(page);
+  }, [page]);
+
 
   return (
     <div>
-    <HelmetTitle title='Log'/>
-    {loading ? (<Loader/>)
-    :(
-      <FunctionContext.Provider value={{dataLog}}>
-        <TableLog/>
-      </FunctionContext.Provider>
-    )}
+      <HelmetTitle title="Log" />
+        <FunctionContext.Provider value={{ dataLog,setPage,page,totalPage}}>
+        <Suspense fallback={<Loader/>}>
+          <TableLog />
+        </Suspense>
+        </FunctionContext.Provider>
+    
     </div>
-  )
-}
+  );
+};
 
 Log.propTypes = {
-    navbarTitle:PropTypes.func
-}
+  navbarTitle: PropTypes.func,
+};
 
-export default Log
+export default Log;

@@ -14,6 +14,11 @@ export const getViewByMonth = async (id) => {
 };
 
 
+export const getViewByWeek = async (id) => {
+  const data = await axios.get(`${endpoint}/viewByWeek/${id}`);
+  return data;
+};
+
 
 export const postView = async (artikelId,date) => {
   const data = await axios.post(`${endpoint}/view`,{

@@ -1,20 +1,31 @@
-import { Chart, LineController, LinearScale, PointElement, LineElement ,CategoryScale} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import FunctionContext from './FunctionContext';
-import { useContext } from 'react';
+import {Chart as ChartJS,CategoryScale,LinearScale,PointElement,LineElement,Title,Tooltip,Legend,} from "chart.js";
+import { Line } from "react-chartjs-2";
+import PropTypes from "prop-types";
+
 // Registrasikan elemen-elemen khusus ke dalam Chart.js
-Chart.register(LineController, LinearScale, PointElement, LineElement,CategoryScale);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-
-const ChartByMonth = () => {
-  const {data,options} = useContext(FunctionContext)
+const ChartByMonth = ({ data, options, title }) => {
   return (
-    <div className='max-w-full'>
-      <h2 className='text-3xl'>Statistik Per Bulan</h2>
+    <div className="max-w-full">
+      <h2 className="text-3xl">{title}</h2>
       <Line data={data} options={options} />
     </div>
   );
 };
 
-export default ChartByMonth;
+ChartByMonth.propTypes = {
+  data: PropTypes.object,
+  options: PropTypes.object,
+  title: PropTypes.string,
+};
 
+export default ChartByMonth;

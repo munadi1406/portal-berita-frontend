@@ -17,30 +17,30 @@ const Index = ({ navbarTitle }) => {
   const [modal, setModal] = useState();
   const [msg, setMsg] = useState();
   const [totalPostView, setTotalPostView] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const getArtikelPostById = async () => {
-    setLoading(true);
     try {
       const { idUsers } = jwtDecodeId();
       const datas = await getArtikelById(idUsers);
       const { data } = await totalPostAndView(idUsers);
       setTotalPostView(data.data);
       setDataArtikel(datas.data.data);
-      setLoading(false);
+      console.log(datas)
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteArtikelPost = async (id) => {
+  const deleteArtikelPost = async (id,e) => {
     try {
+      e.target.innerHTML = "Loading..."
       const deletePost = await deleteArtikel(id);
       setMsg(deletePost.data.message);
       await getArtikelPostById();
     } catch (error) {
       setMsg(error.response.data.error);
     } finally {
+      e.target.innerHTML = "Hapus"
       setModal(true);
     }
   };
@@ -73,17 +73,11 @@ const Index = ({ navbarTitle }) => {
           totalPostView,
         }}
       >
-        {loading ? (
-          <Loader/>
-        ) : (
-          <>
-            <StatistikCound />
-            <Suspense fallback={<Loader />}>
-              <AddArtikel />
-              <TableArtikell />
-            </Suspense>
-          </>
-        )}
+        <StatistikCound />
+        <Suspense fallback={<Loader />}>
+          <AddArtikel />
+          <TableArtikell />
+        </Suspense>
       </FunctionContext.Provider>
     </div>
   );
