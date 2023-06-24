@@ -7,6 +7,12 @@ export const getUsers = async () => {
   return auth;
 };
 
+export const logout = async (id) => {
+  const data = await axios.post(`${endpoint}/logout`,{
+    id
+  });
+  return data;
+};
 
 export const deleteUsers = async (id)=>{
     const auth = await axios.delete(`${endpoint}/users/${id}`);
@@ -31,3 +37,4 @@ export const updatePasswordUsers = async (idUsers,password)=>{
     });
     return auth;
 }
+

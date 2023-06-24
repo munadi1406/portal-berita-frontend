@@ -1,14 +1,20 @@
 import PropTypes from "prop-types";
-// import logoutClearCookie from "../../utils/LogoutClearCookie";
+import { logout } from "../../api/users";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import jwtDecodeId from "../../utils/jwtDecodeId";
+
 
 export default function Navbar({ onClickSidebar, title }) {
   const redirect = useNavigate();
-  const handleLogout =  () => {
-    Cookies.remove("rt");
-     Cookies.remove("at");
-    redirect("/Login");
+  const handleLogout = async () => {
+    try {
+      const {idUsers} = jwtDecodeId()
+      await logout(idUsers)      
+      Cookies.remove("rt");
+       Cookies.remove("at");
+      redirect("/Login");
+    } catch (error) { /* empty */ }
   };
   return (
     <div className="flex justify-between items-center w-full">

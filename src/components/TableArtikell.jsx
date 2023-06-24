@@ -7,7 +7,7 @@ import FunctionContext from "./FunctionContext";
 
 const TableArtikell = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { deleteArtikelPost, dataArtikel } =
+  const { deleteArtikelPost, dataArtikel,handleEdit, handleSetDataEdit,setMsg} =
     useContext(FunctionContext);
 
   const handleSearch = (event) => {
@@ -19,7 +19,11 @@ const TableArtikell = () => {
   );
 
 
- 
+ const handleEditTable = (e)=>{
+  handleEdit()
+  handleSetDataEdit(e)
+  setMsg('')
+ }
 
   return (
     <div className="overflow-x-auto">
@@ -92,7 +96,7 @@ const TableArtikell = () => {
               </td>
               <td className="px-4 py-2">
                 <div className="flex flex-wrap w-max space-y-1">
-                  <button className="btn btn-info w-full text-base-200">
+                  <button className="btn btn-info w-full text-base-200" onClick={()=>handleEditTable(item)}>
                     Edit
                   </button>
                   <button

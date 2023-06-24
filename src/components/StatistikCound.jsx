@@ -5,8 +5,7 @@ import { useContext } from "react";
 export default function StatistikCound() {
   const {totalPostView} = useContext(FunctionContext)
   return (
-    <>
-      <div className="stats shadow flex flex-wrap">
+      <div className="stats shadow flex flex-wrap col-span-full">
         <div className="stat w-full sm:w-auto md:w-1/2 lg:w-1/3">
           <div className="stat-figure text-secondary">
             <svg
@@ -68,6 +67,5 @@ export default function StatistikCound() {
           <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>
-    </>
   );
 }

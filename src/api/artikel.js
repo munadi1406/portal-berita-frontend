@@ -44,4 +44,17 @@ export const insertArticle = async (id,title, content,prolog, kategori, image) =
 };
 
 
+export const updateArticle = async (artikelId,title,content,prolog,kategori,image,) => {
+    const formData = new FormData();
+    formData.append('artikelId', artikelId);
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('kategori', kategori);
+    formData.append('prolog', prolog);
+    formData.append('image', image);
+    const response = await axios.put(`${endpoint}/artikel`, formData);
+    return response;
+};
+
+
 
