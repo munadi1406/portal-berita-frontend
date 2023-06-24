@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const endpoint = "https://portal-berita-backend.fathullahmunadi.repl.co";
+const endpoint = import.meta.env.VITE_SOME_ENDPOINT
 
 export const getArtikel = async (page) => {
   const data = await axios.get(`${endpoint}/artikelpost/${page}`);

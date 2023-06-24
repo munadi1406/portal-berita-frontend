@@ -1,17 +1,23 @@
-import { useState,useEffect } from "react";
-import { deleteKategori, getKategori } from "../../api/kategori";
+import { useState, useEffect ,useRef} from "react";
+import { deleteKategori, editKategori, getKategori } from "../../api/kategori";
 import AddKategori from "../../components/AddKategori";
 import PropTypes from "prop-types";
 import HelmetTitle from "../../utils/HelmetTitle";
 import Modal from "../../components/Modal";
 import FunctionContext from "../../components/FunctionContext";
-import Loader from '../../utils/loader'
+import Loader from "../../utils/loader";
+import EditKategori from "../../components/EditKategori";
 
 export default function KategoriData({ navbarTitle }) {
   const [kategori, setKategori] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [update, setUpdate] = useState();
+  const [valueKategori, setValueKategori] = useState([]);
+  const [updateStatus,setUpdateStatus] = useState(false)
+  const buttonDelete = useRef()
+
 
   const getKategoriData = async () => {
     setLoading(true);
@@ -29,15 +35,17 @@ export default function KategoriData({ navbarTitle }) {
     navbarTitle("Kategori");
   }, []);
 
-  const handleHapus = async (e) => {
+  const handleHapus = async (e,x) => {
+   x.target.innerHTML = "Loading..."
+    setMsg('')
     try {
       const kategoriDelete = await deleteKategori(e);
       await getKategoriData();
       setShowModal(true);
       setMsg(kategoriDelete.data.msg);
     } catch (error) {
-      /* empty */
-    }
+      setMsg(error.response.data.msg)
+    }finally{ x.target.innerHTML = "Hapus" }
   };
 
   const handleKategoriAdded = async (msg) => {
@@ -50,11 +58,35 @@ export default function KategoriData({ navbarTitle }) {
     setShowModal(false);
   };
 
+  const handleEdit = (e) => {
+    setMsg('')
+    setUpdate(true);
+    setValueKategori(e);
+  };
+
+  const updateKategori= async (id,kategori)=>{
+    setUpdateStatus(true);
+    try {
+      const update = await editKategori(id,kategori);
+      setUpdate(false);
+      setMsg(update.data.msg)
+      setShowModal(true)
+      getKategoriData()
+    } catch (error) {
+      setMsg(error.response.data.msg)
+    }finally{
+      setUpdateStatus(false)
+    }
+  }
+
+
   return (
     <div>
       <HelmetTitle title="Kategori Data" />
       <Modal active={showModal} msg={msg} closeModal={closeModal} />
-      <FunctionContext.Provider value={{ handleKategoriAdded }}>
+      <FunctionContext.Provider
+        value={{ handleKategoriAdded,msg, setUpdate, valueKategori,updateKategori,updateStatus }}
+      >
         {loading ? (
           <Loader />
         ) : (
@@ -76,10 +108,16 @@ export default function KategoriData({ navbarTitle }) {
                       <td>{e.kategori}</td>
                       <td>
                         <div className="flex gap-2">
-                          <button className="btn btn-info text-base-200">Edit</button>
+                          <button
+                            className="btn btn-info text-base-200"
+                            onClick={() => handleEdit(e)}
+                          >
+                            Edit
+                          </button>
                           <button
                             className="btn btn-primary"
-                            onClick={() => handleHapus(e.id)}
+                            onClick={(x) => handleHapus(e.id,x)}
+                            ref={buttonDelete}
                           >
                             Hapus
                           </button>
@@ -90,6 +128,7 @@ export default function KategoriData({ navbarTitle }) {
                 </tbody>
               </table>
             </div>
+            {update && <EditKategori valueKategori={valueKategori} />}
           </>
         )}
       </FunctionContext.Provider>

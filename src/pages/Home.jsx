@@ -27,6 +27,14 @@ const Home = () => {
       setLoading(false);
     } catch (error) {
       // console.log(error);
+      if (error.response.status === 429) {
+        setError(true);
+        setMsg(error.response.data);
+      }else if (error.response.status === 500){
+        setError(true)
+        setMsg(error.response.data);
+        console.log(error)
+      }
     }
   };
 
@@ -40,13 +48,9 @@ const Home = () => {
     try {
       const data = await getArtikel(1);
       setDataCarousel(data.data.data);
-    } catch (error) {
-      if (error.response.status === 429) {
-        setError(true);
-        setMsg(error.response.data);
-      }
-    }
+    } catch (error) { /* empty */ }
   };
+
   useEffect(() => {
     getDataCarousel();
   }, []);

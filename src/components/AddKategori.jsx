@@ -7,15 +7,19 @@ export default function AddKategori() {
   const [KategoriInput, setKategoriInput] = useState("");
   const [msg,setMsg] = useState('')
   const {handleKategoriAdded} = useContext(FunctionContext)
+  const [loading,setLoading] = useState(false)
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const insertKategrori = await addKategori(KategoriInput);
       setShowModal(false);
       handleKategoriAdded(insertKategrori.data.msg);
     } catch (error) {
       setMsg(error.response.data.msg)
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -55,7 +59,7 @@ export default function AddKategori() {
               type="submit"
               onClick={(e) => handleSubmit(e)}
             >
-              Tambah Kategori
+              {loading?'Loading...':'Tambah Kategori'}
             </button>
           </div>
         </div>

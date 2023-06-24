@@ -83,7 +83,7 @@ const TableArtikell = () => {
                   >
                     {e}
                   </div>
-                ))}
+                ))} 
               </td>
               <td className="px-4 py-2">{formatDateTime(item.createdAt)}</td>
               <td className="px-4 py-2">{formatDateTime(item.updatedAt)}</td>
