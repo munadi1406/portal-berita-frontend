@@ -2,7 +2,7 @@ import Loader from "../../utils/loader";
 import { useState, useEffect, Suspense, lazy } from "react";
 import jwtDecodeId from "./../../utils/jwtDecodeId";
 import PropTypes from "prop-types";
-import StatistikCound from "../../components/StatistikCound";
+import StatistikCound from "../../components/statistik/StatistikCound";
 import { deleteArtikel, getArtikelById, updateArticle } from "../../api/artikel";
 import HelmetTitle from "../../utils/HelmetTitle";
 import Modal from "../../components/Modal";
@@ -10,8 +10,8 @@ import FunctionContext from "../../components/FunctionContext";
 import { totalPostAndView } from "../../api/view";
 
 const EditArticle = lazy(()=>import ( "../../components/artikel/EditArticle"));
-const AddArtikel = lazy(() => import("../../components/AddArtikel"));
-const TableArtikell = lazy(() => import("../../components/TableArtikell"));
+const AddArtikel = lazy(() => import("../../components/artikel/AddArtikel"));
+const TableArtikell = lazy(() => import("../../components/artikel/TableArtikell"));
 
 const Index = ({ navbarTitle }) => {
   const [dataArtikel, setDataArtikel] = useState([]);

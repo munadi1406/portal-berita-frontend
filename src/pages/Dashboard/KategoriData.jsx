@@ -1,6 +1,6 @@
 import { useState, useEffect ,useRef} from "react";
 import { deleteKategori, editKategori, getKategori } from "../../api/kategori";
-import AddKategori from "../../components/AddKategori";
+import AddKategori from "../../components/kategori/AddKategori";
 import PropTypes from "prop-types";
 import HelmetTitle from "../../utils/HelmetTitle";
 import Modal from "../../components/Modal";

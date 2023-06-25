@@ -6,7 +6,7 @@ import {
   getViewByMonth,
   getViewByWeek,
 } from "../../api/view";
-import TableStatistik from "../../components/TableStatistik";
+import TableStatistik from "../../components/statistik/TableStatistik";
 import { useState } from "react";
 import jwtDecodeId from "../../utils/jwtDecodeId";
 import ChartByMonth from "../../components/ChartByMonth";

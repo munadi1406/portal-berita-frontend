@@ -38,3 +38,10 @@ export const updatePasswordUsers = async (idUsers,password)=>{
     return auth;
 }
 
+export const updateRole = async (idUsers,role)=>{
+    const data = await axios.put(`${endpoint}/usersrole`,{
+      idUsers,
+      role
+    });
+    return data;
+}

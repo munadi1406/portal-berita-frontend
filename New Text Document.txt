@@ -1,8 +1,9 @@
 pengunjung hari ini
-update artikel
-implementasi jwt
+update artikel (done)
+implementasi json web token
 update kategori (done)
 update username (done)
 update password (done)
-logout
+logout (done)
+membuat update role
 pagination opsi

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useEffect,useState } from "react";
 import HelmetTitle from "../../utils/HelmetTitle";
-import UpdateUsername from "../../components/UpdateUsername";
-import UpdatePassword from "../../components/UpdatePassword";
+import UpdateUsername from "../../components/user/UpdateUsername";
+import UpdatePassword from "../../components/user/UpdatePassword";
 import { updatePasswordUsers, updateUsernameUsers } from "../../api/users";
 import jwtDecodeId from '../../utils/jwtDecodeId'
 import FunctionContext from '../../components/FunctionContext'

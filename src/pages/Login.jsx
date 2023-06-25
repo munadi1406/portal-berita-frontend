@@ -21,7 +21,7 @@ export default function Login() {
       if (data.data.accessToken) {
         Cookies.set("at", data.data.accessToken, { httpOnly: false, secure: true, sameSite: 'strict' });
         Cookies.set("rt", data.data.refreshToken, { httpOnly: false, expires: 7, secure: true, sameSite: 'strict' });
-        redirect("/dashboard");
+        redirect("/dashboard/");
       }
     } catch (error) {
       setMsg(error.response.data.msg);
@@ -45,7 +45,7 @@ export default function Login() {
           <div className="text-center lg:text-left text-white">
             <h1 className="text-5xl font-bold mb-6 font-sans">Sign in to your account</h1>
             <q className="">
-              Bagaimana cara seorang mengganti bola lampu? Mereka hanya perlu mengetik <span className="text-2xl text-base-100 font-sans font-bold">lightBulb.replace(&ldquo;burned&rdquo;, &ldquo;new&rdquo;)</span> dan semuanya beres!
+              Bagaimana cara seorang mengganti bola lampu? Mereka hanya perlu mengetik <span className="text-2xl text-white font-sans font-bold">lightBulb.replace(&ldquo;burned&rdquo;, &ldquo;new&rdquo;)</span> dan semuanya beres!
             </q>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -82,7 +82,7 @@ export default function Login() {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-info text-base-100" type="submit">
+                <button className="btn btn-info text-base-200" type="submit">
                   {loading ? 'Loading...' : 'Login'}
                 </button>
               </div>

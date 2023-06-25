@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { insertArticle } from "../api/artikel";
-import { getKategori } from "../api/kategori";
-import jwtDecodeId from "./../utils/jwtDecodeId";
-import FunctionContext from "./FunctionContext";
+import { insertArticle } from "../../api/artikel";
+import { getKategori } from "../../api/kategori";
+import jwtDecodeId from "../../utils/jwtDecodeId";
+import FunctionContext from "../FunctionContext";
 
 export default function AddArtikel() {
   const [content, setContent] = useState("");
@@ -105,7 +105,7 @@ export default function AddArtikel() {
         >
           <form
             encType="multipart/form-data"
-            className="bg-white w-3/4 rounded-md p-4 overflow-y-auto flex justify-center "
+            className="bg-white w-full rounded-md p-4 overflow-y-auto flex justify-center "
             onSubmit={(e) => insertArtikel(e)}
             
           >

@@ -1,4 +1,4 @@
-import FunctionContext from "./FunctionContext";
+import FunctionContext from "../FunctionContext";
 import { useContext } from "react";
 
 
@@ -62,9 +62,8 @@ export default function StatistikCound() {
               ></path>
             </svg>
           </div>
-          <div className="stat-title">New Registers</div>
+          <div className="stat-title">View Hari Ini</div>
           <div className="stat-value">1,200</div>
-          <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>
   );

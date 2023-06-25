@@ -5,7 +5,7 @@ import FunctionContext from "../../components/FunctionContext";
 import HelmetTitle from "../../utils/HelmetTitle";
 import Loader from '../../utils/loader'
 
-const TableLog = lazy(()=>import('../../components/TableLog'));
+const TableLog = lazy(()=>import('../../components/log/TableLog'));
 
 const Log = ({ navbarTitle }) => {
   const [dataLog, setDataLog] = useState([]);

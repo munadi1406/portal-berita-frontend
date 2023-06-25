@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import PropTypes from 'prop-types'
-import { getUsers,deleteUsers, } from "../../api/users"
+import { getUsers,deleteUsers, updateRole, } from "../../api/users"
 import HelmetTitle from '../../utils/HelmetTitle'
-import TableUsers from "../../components/TableUsers"
+import TableUsers from "../../components/user/TableUsers"
 import FunctionContext from "../../components/FunctionContext"
 import { useState } from "react"
 import Modal from "../../components/Modal"
@@ -46,6 +46,16 @@ const Users = ({ navbarTitle }) => {
         setModal(false)
     }
 
+    const updateRoleUser = async (id,role)=>{
+        setMsg('')
+        try {
+            const {data} = await updateRole(id,role)
+            setMsg(data.msg)
+            setModal(true)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div>
@@ -53,7 +63,7 @@ const Users = ({ navbarTitle }) => {
             <Modal active={modal} msg={msg} closeModal={closeModal}/>
             <div>
                 <div className="text-3xl">Data Users</div>
-                <FunctionContext.Provider value={{dataUsers,handleDeleteUsers}}>
+                <FunctionContext.Provider value={{dataUsers,handleDeleteUsers,updateRoleUser}}>
                     <TableUsers />
                 </FunctionContext.Provider>
             </div>

@@ -46,7 +46,7 @@ export default function Register() {
           <div className="text-center lg:text-left text-white">
             <h1 className="text-5xl font-bold">Unlock Your Journey!</h1>
             <q className="py-6 text-base-100 ">
-            Mengapa seseorang suka <span className="font-bold text-2xl font-sans">infinite loop?</span> Karena mereka <span className="font-bold text-2xl font-sans">menikmati ketika sesuatu berjalan selamanya!</span>
+            Mengapa seseorang suka <span className="font-bold text-2xl font-sans">infinite loop?</span> Karena mereka <span className="font-bold text-2xl font-sans text-white">menikmati ketika sesuatu berjalan selamanya!</span>
             </q>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -116,7 +116,7 @@ export default function Register() {
                   </label>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-info text-base-100" type="submit">
+                  <button className="btn btn-info text-base-200" type="submit">
                     {loading ? "Loading..." : "Register"}
                   </button>
                 </div>

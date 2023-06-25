@@ -1,6 +1,6 @@
 import { useState ,useContext} from "react";
-import { addKategori } from "../api/kategori";
-import FunctionContext from "./FunctionContext";
+import { addKategori } from "../../api/kategori";
+import FunctionContext from "../FunctionContext";
 
 export default function AddKategori() {
   const [showModal, setShowModal] = useState(false);

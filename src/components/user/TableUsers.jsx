@@ -1,15 +1,13 @@
 import { useState, useContext } from 'react'
-import FunctionContext from './FunctionContext'
+import FunctionContext from '../FunctionContext'
 
 
 
 
 const TableUsers = () => {
-    const { dataUsers,handleDeleteUsers } = useContext(FunctionContext)
+    const { dataUsers,handleDeleteUsers,updateRoleUser } = useContext(FunctionContext)
     const [searchTerm, setSearchTerm] = useState('');
-
-    console.log(dataUsers)
-
+    
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -17,6 +15,17 @@ const TableUsers = () => {
     const filteredData = dataUsers.filter((item) =>
         item.username.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+
+    const handleSelect = async (id,e)=>{
+        await updateRoleUser(id,e.target.value)
+    }
+
+    const handleDelete = async (id,e) =>{
+        e.target.innerHTML = "Loading..."
+        await handleDeleteUsers(id)
+        e.target.innerHTML = "Hapus"
+    }
 
     return (
         <div className="overflow-x-auto">
@@ -41,11 +50,13 @@ const TableUsers = () => {
                         <tr key={item.id} className='hover'>
                             <td>{item.username}</td>
                             <td>{item.email}</td>
-                            <td>{item.role}</td>
+                            <td><select name="" id="" onChange={(e)=>handleSelect(item.id,e)} >
+                                <option value="admin" selected={item.role === "admin"}>Admin</option>
+                                <option value="publisher" selected={item.role === "publisher"}>Publisher</option>
+                            </select></td>
                             <td>
-                                <div className='flex flex-wrap w-max space-y-1'>
-                                    <button className='btn btn-info w-full'>Edit</button>
-                                    <button className="btn btn-warning w-full" onClick={()=>handleDeleteUsers(item.id)}>Hapus</button>
+                                <div className='flex justify-center items-center w-full space-y-1'>
+                                    <button className="btn btn-primary text-white w-full" onClick={(e)=>handleDelete(item.id,e)}>Hapus</button>
                                 </div>
                             </td>
                         </tr>

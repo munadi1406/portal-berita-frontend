@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FunctionContext from "./FunctionContext";
+import FunctionContext from "../FunctionContext";
 import { useContext } from "react";
 
 const UpdatePassword = () => {

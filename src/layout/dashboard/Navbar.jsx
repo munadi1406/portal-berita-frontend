@@ -4,21 +4,22 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import jwtDecodeId from "../../utils/jwtDecodeId";
 
-
 export default function Navbar({ onClickSidebar, title }) {
   const redirect = useNavigate();
   const handleLogout = async () => {
     try {
-      const {idUsers} = jwtDecodeId()
-      await logout(idUsers)      
+      const { idUsers } = jwtDecodeId();
+      await logout(idUsers);
       Cookies.remove("rt");
-       Cookies.remove("at");
+      Cookies.remove("at");
       redirect("/Login");
-    } catch (error) { /* empty */ }
+    } catch (error) {
+      /* empty */
+    }
   };
   return (
-    <div className="flex justify-between items-center w-full">
-      <div className=" w-max h-max flex justify-center items-center">
+    <div className="grid grid-cols-3 w-full">
+      <div className=" w-full h-full flex justify-start items-center ">
         <label className="swap swap-rotate lg:hidden ">
           <input type="checkbox" onChange={onClickSidebar} />
           <svg
@@ -42,10 +43,14 @@ export default function Navbar({ onClickSidebar, title }) {
         </label>
       </div>
 
-      <h1 className="text-2xl font-semibold text-white">{title}</h1>
-      <button className="btn btn-accent text-base-100" onClick={handleLogout}>
-        Logout
-      </button>
+      <h1 className="text-2xl font-semibold font-sans text-white h-full flex justify-center items-center">
+        {title}
+      </h1>
+      <div className="w-full h-full flex justify-end items-center">
+        <button className="btn btn-accent text-white border-white" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
