@@ -200,7 +200,7 @@ export default function AddArtikel() {
               </div>
               <button
                 className="btn btn-info w-full mt-2 text-white"
-                disabled={kategoriData.length <= 0}
+                disabled={kategoriData.length <= 0 || insertLoading}
                 type="submit"
               >
                {insertLoading ? "Loading...": "Posting"}

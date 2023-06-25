@@ -1,9 +1,39 @@
 import axios from "axios";
+import Cookies from "js-cookie";
+import { newAccessToken } from "./users";
 
 const endpoint = import.meta.env.VITE_SOME_ENDPOINT
 
+const axiosJWT = axios.create();
+axiosJWT.interceptors.request.use(
+  function (config) {
+    const at = Cookies.get("at");
+    config.headers["Authorization"] = `Bearer ${at}`;
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    console.log({ error });
+    return Promise.reject(error);
+  }
+);
+
+axiosJWT.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  async function (error) {
+    if (error.response.status === 403) {
+      await newAccessToken();
+      const originalRequest = error.config;
+      return await axiosJWT(originalRequest);
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const getLog = async (page) => {
-  const data = await axios.get(`${endpoint}/log/${page}`);
+  const data = await axiosJWT.get(`${endpoint}/log/${page}`);
   return data;
 };
 

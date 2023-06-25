@@ -13,6 +13,7 @@ const TableArtikell = () => {
     handleEdit,
     handleSetDataEdit,
     setMsg,
+    loadingDelete
   } = useContext(FunctionContext);
 
   const handleSearch = (event) => {
@@ -115,6 +116,7 @@ const TableArtikell = () => {
                     <button
                       className="btn btn-primary w-full text-base-200"
                       onClick={(e) => deleteArtikelPost(item.artikelId, e)}
+                      disabled={loadingDelete}
                     >
                       Hapus
                     </button>

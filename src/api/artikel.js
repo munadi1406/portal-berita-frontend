@@ -1,6 +1,36 @@
 import axios from "axios";
+import Cookies from "js-cookie";
+import { newAccessToken } from "./users";
 
 const endpoint = import.meta.env.VITE_SOME_ENDPOINT
+
+const axiosJWT = axios.create();
+axiosJWT.interceptors.request.use(
+  function (config) {
+    const at = Cookies.get("at");
+    config.headers["Authorization"] = `Bearer ${at}`;
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    console.log({ error });
+    return Promise.reject(error);
+  }
+);
+
+axiosJWT.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  async function (error) {
+    if (error.response.status === 403) {
+      await newAccessToken();
+      const originalRequest = error.config;
+      return await axiosJWT(originalRequest);
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const getArtikel = async (page) => {
   const data = await axios.get(`${endpoint}/artikelpost/${page}`);
@@ -8,7 +38,7 @@ export const getArtikel = async (page) => {
 };
 
 export const getArtikelById = async (id) => {
-  const data = await axios.get(`${endpoint}/artikelById/${id}`);
+  const data = await axiosJWT.get(`${endpoint}/artikelById/${id}`);
   return data;
 };
 
@@ -26,7 +56,7 @@ export const artikelByKategori = async (kategori,page) => {
 };
 
 export const deleteArtikel = async (id) => {
-  const data = await axios.delete(`${endpoint}/artikel/${id}`);
+  const data = await axiosJWT.delete(`${endpoint}/artikel/${id}`);
 
   return data;
 };
@@ -39,7 +69,7 @@ export const insertArticle = async (id,title, content,prolog, kategori, image) =
     formData.append('kategori', kategori);
     formData.append('prolog', prolog);
     formData.append('image', image);
-    const response = await axios.post(`${endpoint}/artikel`, formData);
+    const response = await axiosJWT.post(`${endpoint}/artikel`, formData);
     return response;
 };
 
@@ -52,7 +82,7 @@ export const updateArticle = async (artikelId,title,content,prolog,kategori,imag
     formData.append('kategori', kategori);
     formData.append('prolog', prolog);
     formData.append('image', image);
-    const response = await axios.put(`${endpoint}/artikel`, formData);
+    const response = await axiosJWT.put(`${endpoint}/artikel`, formData);
     return response;
 };
 

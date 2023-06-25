@@ -17,13 +17,18 @@ const Home = () => {
   const [totalPage, setTotalPage] = useState();
   const [error, setError] = useState();
   const [msg, setMsg] = useState();
+  const [currentPage,setCurrentPage] = useState(0)
+  const [buttonLoading,setButtonLoading] = useState(false);
+  
 
   const getArtikelData = async () => {
+    setButtonLoading(true);
     try {
       const datas = await getArtikel(page);
       const newData = datas.data.data;
       setData(data.concat(newData));
       setTotalPage(datas.data.totalPages);
+      setCurrentPage(datas.data.currentPage)
       setLoading(false);
     } catch (error) {
       // console.log(error);
@@ -32,9 +37,10 @@ const Home = () => {
         setMsg(error.response.data);
       }else if (error.response.status === 500){
         setError(true)
-        setMsg(error.response.data);
-        console.log(error)
+        setMsg(error.response);
       }
+    }finally{
+      setButtonLoading(false)
     }
   };
 
@@ -87,11 +93,12 @@ const Home = () => {
               </Suspense>
               <button
                 className={`btn btn-info text-base-100 col-span-full w-full  ${
-                  page >= totalPage ? "hidden" : ""
+                  currentPage >= totalPage ? "hidden" : ""
                 }`}
+                disabled={buttonLoading}
                 onClick={() => setPage(page + 1)}
               >
-                Load More
+                {buttonLoading ? 'Loading...' : 'Load More'}
               </button>
             </div>
           )}

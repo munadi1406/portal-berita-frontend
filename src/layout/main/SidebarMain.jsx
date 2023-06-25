@@ -10,13 +10,12 @@ const SidebarMain = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const getArtikelData = async () => {
+    setLoading(false);
     try {
       const datas = await getArtikel(1);
       setData(datas.data.data);
-      setLoading(false);
-      // console.log(datas);
-    } catch (error) {
-      // console.log(error);
+    } catch (error) { /* empty */ }finally{
+      setLoading(false)
     }
   };
 

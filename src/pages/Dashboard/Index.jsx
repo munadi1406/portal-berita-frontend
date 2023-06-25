@@ -21,6 +21,7 @@ const Index = ({ navbarTitle }) => {
   const [isEdit,setIsEdit] = useState(false);
   const [dataEdit,setDataEdit] = useState([])
   const [loading,setLoading] = useState(false)
+  const [loadingDelete,setLoadingDelete] = useState(false)
 
   const getArtikelPostById = async () => {
     setLoading(true)
@@ -36,6 +37,7 @@ const Index = ({ navbarTitle }) => {
   };
 
   const deleteArtikelPost = async (id,e) => {
+    setLoadingDelete(true)
     try {
       e.target.innerHTML = "Loading..."
       const deletePost = await deleteArtikel(id);
@@ -45,6 +47,7 @@ const Index = ({ navbarTitle }) => {
       setMsg(error.response.data.error);
     } finally {
       e.target.innerHTML = "Hapus"
+      setLoadingDelete(false)
       setModal(true);
     }
   };
@@ -113,7 +116,9 @@ const Index = ({ navbarTitle }) => {
           dataEdit,
           updateArtikel,
           msg,
-          setMsg
+          setMsg,
+          loadingDelete
+        
         }}
       >
         <StatistikCound />

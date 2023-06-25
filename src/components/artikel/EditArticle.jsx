@@ -193,7 +193,7 @@ const EditArticle = () => {
                                 </div>
                                 <button
                                     className="btn btn-info w-full mt-2 text-white"
-                                    disabled={kategoriData.length <= 0}
+                                    disabled={kategoriData.length <= 0 || loadingUpdate}
                                     type="submit"
                                 >
                                     {loadingUpdate ? 'Loading...' : 'Update'}
