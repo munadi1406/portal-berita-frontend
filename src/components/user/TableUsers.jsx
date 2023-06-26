@@ -50,9 +50,9 @@ const TableUsers = () => {
                         <tr key={item.id} className='hover'>
                             <td>{item.username}</td>
                             <td>{item.email}</td>
-                            <td><select name="" id="" onChange={(e)=>handleSelect(item.id,e)} >
-                                <option value="admin" selected={item.role === "admin"}>Admin</option>
-                                <option value="publisher" selected={item.role === "publisher"}>Publisher</option>
+                            <td><select className='select select-info text-info bg-base-200 w-full' onChange={(e)=>handleSelect(item.id,e)} defaultValue={item.role} >
+                                <option value="admin" >Admin</option>
+                                <option value="publisher" >Publisher</option>
                             </select></td>
                             <td>
                                 <div className='flex justify-center items-center w-full space-y-1'>

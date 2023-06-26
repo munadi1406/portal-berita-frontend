@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import FunctionContext from "../FunctionContext";
 import { useContext } from "react";
 
 
 export default function StatistikCound() {
   const {totalPostView} = useContext(FunctionContext)
+
+
   return (
       <div className="stats shadow flex flex-wrap col-span-full">
         <div className="stat w-full sm:w-auto md:w-1/2 lg:w-1/3">
@@ -63,7 +66,7 @@ export default function StatistikCound() {
             </svg>
           </div>
           <div className="stat-title">View Hari Ini</div>
-          <div className="stat-value">1,200</div>
+          <div className="stat-value">{totalPostView.viewsToday}</div>
         </div>
       </div>
   );

@@ -16,8 +16,11 @@ const Kategori = () => {
   const [error, setError] = useState();
   const [msg, setMsg] = useState();
   const [previousKategori, setPreviousKategori] = useState("");
+  const [currentPage,setCurrentPage] = useState()
+  const [loading,setLoading] = useState(false);
 
   const getDataByKategori = async () => {
+    setLoading(true);
     try {
       const data = await artikelByKategori(kategori, page);
       if (data.data.data.length > 0) {
@@ -29,16 +32,19 @@ const Kategori = () => {
           setDataByKategori(data.data.data);
         }
         setTotalPage(data.data.totalPages);
+        setCurrentPage(data.data.currentPage)
         setNotFound(false);
       } else {
         setNotFound(true);
       }
     } catch (error) {
-      console.log(error);
+     
       if (error.response.status === 429) {
         setError(true);
         setMsg(error.response.data);
       }
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -74,13 +80,13 @@ const Kategori = () => {
               />
             ))}
             <button
-              className={`btn btn-secondary col-span-full w-full ${
-                page >= totalPage || !dataBykategori.length ? "hidden" : ""
+              className={`btn btn-info col-span-full w-full text-white ${
+                currentPage >= totalPage || !dataBykategori.length ? "hidden" : ""
               }`}
               onClick={() => setPage(page + 1)}
-              disabled={!dataBykategori.length}
+              disabled={loading}
             >
-              Next Page
+              {loading ? 'Loading...' :'Load More'}
             </button>
           </Suspense>
         </div>

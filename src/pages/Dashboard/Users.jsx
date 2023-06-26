@@ -21,10 +21,7 @@ const Users = ({ navbarTitle }) => {
         try {
             const data = await getUsers()
             setDataUsers(data.data.data)
-            console.log(data)
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) { /* empty */ }
     }
 
     useEffect(() => {
