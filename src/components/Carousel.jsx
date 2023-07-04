@@ -73,6 +73,7 @@ const Carousel = memo(function Carousel({ data }) {
               src={e.image}
               alt={e.title}
               effect="black-and-white"
+              
             />
             {/* bg grident  */}
             <div className="absolute top-0 left-0 bg-black/30 w-full h-full z-0"></div>

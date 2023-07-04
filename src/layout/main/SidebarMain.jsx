@@ -8,9 +8,9 @@ const Collapse = lazy(() => import("../../components/collapse"));
 
 const SidebarMain = () => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const getArtikelData = async () => {
-    setLoading(false);
+    setLoading(true);
     try {
       const datas = await getArtikel(1);
       setData(datas.data.data);
