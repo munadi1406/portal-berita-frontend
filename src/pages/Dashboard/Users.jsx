@@ -35,9 +35,7 @@ const Users = ({ navbarTitle }) => {
             setMsg(deleteUser.data.message)
             setModal(true)
             getUsersData()
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) { /* empty */ }
     }
 
     const closeModal  = ()=>{
@@ -50,9 +48,7 @@ const Users = ({ navbarTitle }) => {
             const {data} = await updateRole(id,role)
             setMsg(data.msg)
             setModal(true)
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) { /* empty */ }
     }
 
     return (

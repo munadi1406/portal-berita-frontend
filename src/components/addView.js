@@ -6,7 +6,7 @@ const addView = async (id) => {
     const date = new Date().toISOString();
     await postView(artikelId, date);
   } catch (error) {
-    console.log(error);
+   
   }
 };
 
